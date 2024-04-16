@@ -8,11 +8,11 @@ using System.Threading.Tasks;
 namespace MaquinaVendingCosmic {
     internal class ProductosAlimenticios : Producto {
         public int Calorias { get; set; }
-        public string Grasa { get; set; }
-        public string Azucar { get; set; }
+        public int Grasa { get; set; }
+        public int Azucar { get; set; }
 
         public ProductosAlimenticios(int id) : base(id) { }
-        public ProductosAlimenticios(int id, string nombre, int unidades, double precioUnitario, string descripcion, int calorias, string grasa, string azucar)
+        public ProductosAlimenticios(int id, string nombre, int unidades, double precioUnitario, string descripcion, int calorias, int grasa, int azucar)
             : base(nombre, unidades, precioUnitario, descripcion) {
             Calorias = calorias;
             Grasa = grasa;
