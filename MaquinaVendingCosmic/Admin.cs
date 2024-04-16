@@ -6,18 +6,17 @@ using System.Threading.Tasks;
 
 namespace MaquinaVendingCosmic
 {
-    internal class Admin:Usuario
-    {
+    internal class Admin   {
         public string Nombre { get; set; }
         public string Password { get; set; }
         public Admin() { }
 
-        public Admin(int id, string nombre, string password) : base(id)
+        public Admin( string nombre, string password) 
         {
             Nombre = nombre;
             Password = password;
         }
-        public override void Menu()
+        public  void Menu()
         {
             int opcion;
             do
@@ -160,7 +159,7 @@ namespace MaquinaVendingCosmic
             Console.WriteLine("Saliendo...");
             return Usuario;
         }
-        public override void Salir()
+        public  void Salir()
         {
         }
     }
