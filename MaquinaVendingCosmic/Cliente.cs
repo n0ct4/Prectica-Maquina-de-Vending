@@ -13,11 +13,11 @@ namespace MaquinaVendingCosmic
         
         public Cliente() { }
         
-        public Cliente(List<Producto> _stockProductos)
-        {
-            stockProductos = _stockProductos;
-        }
-        public  void Menu()
+        //public Cliente()//List<Producto> _stockProductos
+        //{
+            //stockProductos = _stockProductos;
+        //}
+        public void Menu()
         {
             bool comprarProducto = true;
             int opcion;
@@ -54,12 +54,20 @@ namespace MaquinaVendingCosmic
         }
         public void ListarAlimentos()
         {
-            foreach(ProductosAlimenticios p in stockProductos)
-            {
-                
-                    Console.WriteLine($"(ID) - {p.Id}: {p.Nombre}\n");
+            Console.WriteLine("  --- Listado de productos ---  ");
+            Console.WriteLine();
+            if (stockProductos == null) {
+                Console.WriteLine("No hay ningún producto");
+            }
+            else {
+                foreach (Producto c in stockProductos) {
+                    if (c is Producto) {
+                        Console.WriteLine($"{c.Id} --- {c.Nombre}" );
+                    }
                 }
-        
+                Console.ReadKey();
+            }
+
         }
       /* public void ListarProductosE()
         {

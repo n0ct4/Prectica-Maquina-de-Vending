@@ -30,9 +30,9 @@ namespace MaquinaVendingCosmic {
 
         public override void SolicitarDetalles() {
             base.SolicitarDetalles();
-            Console.WriteLine("Peso: ");
+            Console.Write("Peso: ");
             Peso = int.Parse(Console.ReadLine());
-            Console.WriteLine("Que tipo de material es?: ");
+            Console.Write("Que tipo de material es?: ");
 
             Console.WriteLine("1. Oro");
             Console.WriteLine("2. Plata");

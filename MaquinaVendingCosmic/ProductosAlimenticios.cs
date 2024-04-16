@@ -19,16 +19,16 @@ namespace MaquinaVendingCosmic {
             Azucar = azucar;
         }
         public override string MostrarDetalles() {
-            return base.MostrarDetalles() + $"\t\nCalorias: {Calorias}\t\nGrasa: {Grasa}\t\nAzucar: {Azucar}";
+            return base.MostrarDetalles() + $"\t\nCalorias: {Calorias}\t\nGrasa: {Grasa} gramos.\t\nAzucar: {Azucar} gramos.";
         }
         public override void SolicitarDetalles() {
             base.SolicitarDetalles();
-            Console.WriteLine("Calorias: ");
+            Console.Write("Calorias: ");
             Calorias = int.Parse(Console.ReadLine());
-            Console.WriteLine("Grasa: ");
-            Grasa = Console.ReadLine();
-            Console.WriteLine("Azucar: ");
-            Azucar = Console.ReadLine();
+            Console.Write("Grasa: ");
+            Grasa = int.Parse(Console.ReadLine());
+            Console.Write("Azucar: ");
+            Azucar = int.Parse(Console.ReadLine());
         }
     }
 }
