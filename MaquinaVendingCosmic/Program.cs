@@ -7,8 +7,14 @@ using System.Threading.Tasks;
 
 namespace MaquinaVendingCosmic {
     internal class Program {
+
+         static List<Producto> stockProductos;
         static void Main(string[] args) {
 
+            stockProductos = new List<Producto>();
+            ProductosAlimenticios a = new ProductosAlimenticios(stockProductos.Count + 1, "patata", 1, 20, "sabrosa", 2, "cero", "baja");
+            stockProductos.Add(a);
+           
             int opcion = 0;
 
             do {
@@ -22,7 +28,8 @@ namespace MaquinaVendingCosmic {
                 opcion = int.Parse(Console.ReadLine());
                 switch (opcion) {
                     case 1:
-                        // Comprar producto
+                        Cliente c = new Cliente(stockProductos);
+                        c.Menu();
                         break;
                     case 2:
                         // Menu id producto y mostrar info

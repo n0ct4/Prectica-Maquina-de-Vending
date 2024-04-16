@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MaquinaVendingCosmic
 {
-    internal class Admin   {
+    internal class Admin : Cliente  {
         public string Nombre { get; set; }
         public string Password { get; set; }
         public Admin() { }
