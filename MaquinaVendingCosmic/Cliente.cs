@@ -8,62 +8,90 @@ namespace MaquinaVendingCosmic
 {
     internal class Cliente
     {
+        public static List<Producto> stockProductos = new List<Producto>();
+        public static List<int> carrito = new List<int>();
+        
         public Cliente() { }
-        public Cliente(int id)
+        
+        public Cliente(List<Producto> _stockProductos)
         {
+            stockProductos = _stockProductos;
         }
         public  void Menu()
         {
-
+            bool comprarProducto = true;
             int opcion;
             do
             {
+               
                 Console.Clear();
 
                 Console.WriteLine("Buenos dias que desea comprar: ");
                 Console.WriteLine("Alimentos");
-                //listar alimentos
+                ListarAlimentos();
                 Console.WriteLine("Productos Electronicos");
-                //listar productos electronicos
+             //  ListarProductosE();
                 Console.WriteLine("Materiales preciosos");
-                //listar Materiales preciosos
+               // ListaProductosMP();
                 Console.WriteLine(" ");
                 Console.WriteLine("Elija el producto deseado: ");
-
+                Console.WriteLine("De al numero 15 para salir: ");
                 opcion = int.Parse(Console.ReadLine());
 
-                switch (opcion)
+                AddCarrito(opcion);
+                    
+                Console.WriteLine("El producto a sido añadido al carrito");
+                Console.WriteLine("¿Quiere seguir comprando? (1.Si 2.No)");
+                char salir = char.Parse(Console.ReadLine());
+                if(salir == 'n' || salir == 'N')
                 {
-                    case 1: //alimentos
-
-                        break;
-                    case 2: //materiales electronicos
-                        break;
-                    case 3: // materiales preciosos
-                        break;
+                    comprarProducto = false;
                 }
-                //alimentos / productos electronicos / materiales preciosos
-            } while (opcion != 4);
+                Console.ReadKey();
+                //ADDCarrito
+               
+            } while (comprarProducto !=true || opcion !=15);
         }
-        public void ComprarAlimentos()
+        public void ListarAlimentos()
         {
-            Console.Clear();
+            foreach(ProductosAlimenticios p in stockProductos)
+            {
+                
+                    Console.WriteLine($"(ID) - {p.Id}: {p.Nombre}\n");
+                }
+        
+        }
+      /* public void ListarProductosE()
+        {
+            bool 
+            if()
+            foreach (ProductosElectronicos p in stockProductos)
+            {
+                Console.WriteLine($"(ID) - {p.Id}: {p.Nombre}\n");
+            }
+        }
+        public void ListaProductosMP()
+        {
+            foreach (MaterialesPreciosos p in stockProductos)
+            {
+                Console.WriteLine($"(ID) - {p.Id}: {p.Nombre}\n");
+            }
+        }*/
 
-            Console.WriteLine("  --- Listado de productos ---  ");
-            //una vez tenga la lista de productos cargarla para que salten unicamento los alimentos
-            Console.WriteLine("Seleccione el id del elemento que desea comprar:");
-            int seleccionAlimento = int.Parse(Console.ReadLine());
-
-            /*     if (seleccionAlimento == )
-                 {
 
 
-                 }*/
-            //necesito el resto del codigo para esto 
-            //una vez echo este es copia y pega con Comprar el resto de las cosas cambienado nombre y variables
-
-            return;
-
+       public void AddCarrito(int idElegido)
+        {
+            int carritoMaximo = 12;
+            if (carritoMaximo >= carrito.Count)
+            {
+                carrito.Add(idElegido);
+                Console.WriteLine($"IDSSSS ----->>>>>> {idElegido}");
+            }
+            else
+            {
+                { Console.WriteLine("No hay mas productos bro"); }
+            }
         }
         public  void Salir()
         {
