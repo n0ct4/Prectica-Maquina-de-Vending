@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace MaquinaVendingCosmic
 {
-    internal class Cliente : Usuario
+    internal class Cliente
     {
         public Cliente() { }
-        public Cliente(int id) : base(id)
+        public Cliente(int id)
         {
         }
-        public override void Menu()
+        public  void Menu()
         {
 
             int opcion;
@@ -65,7 +65,7 @@ namespace MaquinaVendingCosmic
             return;
 
         }
-        public override void Salir()
+        public  void Salir()
         {
             //terminar
         }   

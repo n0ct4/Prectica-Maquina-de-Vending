@@ -7,7 +7,11 @@ using System.Threading.Tasks;
 
 namespace MaquinaVendingCosmic {
     internal class Program {
+
+        static List<Producto> stockProductos;
         static void Main(string[] args) {
+
+            stockProductos = new List<Producto>();
 
             int opcion = 0;
 
