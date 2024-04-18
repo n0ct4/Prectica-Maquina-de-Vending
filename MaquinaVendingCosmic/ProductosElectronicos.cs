@@ -21,13 +21,13 @@ namespace MaquinaVendingCosmic {
             Precargado = precargado;
         }
         public override string MostrarDetalles() {
-            return base.MostrarDetalles() + $"\t\nMaterial: {MaterialE} - Peso: {Pilas} - Precargado: {Precargado}";
+            return base.MostrarDetalles() + $"\t\nPilas: {Pilas} - Precargado: {Precargado}";
         }
         public override void SolicitarDetalles() {
             base.SolicitarDetalles();
-            Console.WriteLine("Tiene pilas?: ");
+            Console.Write("Tiene pilas?: ");
             Pilas = bool.Parse(Console.ReadLine());
-            Console.WriteLine("Esta precargado el articulo?: ");
+            Console.Write("Esta precargado el articulo?: ");
             Precargado = bool.Parse(Console.ReadLine());
         }
     }

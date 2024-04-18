@@ -8,28 +8,27 @@ using System.Threading.Tasks;
 namespace MaquinaVendingCosmic {
     internal class ProductosAlimenticios : Producto {
         public int Calorias { get; set; }
-        public string Grasa { get; set; }
-        public string Azucar { get; set; }
+        public int Grasa { get; set; }
+        public int Azucar { get; set; }
         public ProductosAlimenticios(double precioUnitario) : base(precioUnitario) { }
-
         public ProductosAlimenticios(int id) : base(id) { }
-        public ProductosAlimenticios(int id, string nombre, int unidades, double precioUnitario, string descripcion, int calorias, string grasa, string azucar)
+        public ProductosAlimenticios(int id, string nombre, int unidades, double precioUnitario, string descripcion, int calorias, int grasa, int azucar)
             : base(nombre, unidades, precioUnitario, descripcion) {
             Calorias = calorias;
             Grasa = grasa;
             Azucar = azucar;
         }
         public override string MostrarDetalles() {
-            return base.MostrarDetalles() + $"\t\nCalorias: {Calorias}\t\nGrasa: {Grasa}\t\nAzucar: {Azucar}";
+            return base.MostrarDetalles() + $"\t\nCalorias: {Calorias}\t\nGrasa: {Grasa} gramos.\t\nAzucar: {Azucar} gramos.";
         }
         public override void SolicitarDetalles() {
             base.SolicitarDetalles();
-            Console.WriteLine("Calorias: ");
+            Console.Write("Calorias: ");
             Calorias = int.Parse(Console.ReadLine());
-            Console.WriteLine("Grasa: ");
-            Grasa = Console.ReadLine();
-            Console.WriteLine("Azucar: ");
-            Azucar = Console.ReadLine();
+            Console.Write("Grasa: ");
+            Grasa = int.Parse(Console.ReadLine());
+            Console.Write("Azucar: ");
+            Azucar = int.Parse(Console.ReadLine());
         }
     }
 }
