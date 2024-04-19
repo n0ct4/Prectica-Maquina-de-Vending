@@ -19,8 +19,8 @@ namespace MaquinaVendingCosmic
         //}
         public virtual void Menu()
         {
-            bool comprarProducto = true;
-            int opcion;
+            int salir;
+            int opcion = 0;
             do
             {
                
@@ -29,28 +29,38 @@ namespace MaquinaVendingCosmic
                 Console.WriteLine("Buenos dias que desea comprar: ");
                 Console.WriteLine("Alimentos");
                 ListarAlimentos();
-                Console.WriteLine("Productos Electronicos");
+              //  Console.WriteLine("Productos Electronicos");
              //  ListarProductosE();
-                Console.WriteLine("Materiales preciosos");
+            //    Console.WriteLine("Materiales preciosos");
                // ListaProductosMP();
                 Console.WriteLine(" ");
                 Console.WriteLine("Elija el producto deseado: ");
                 Console.WriteLine("De al numero 15 para salir: ");
                 opcion = int.Parse(Console.ReadLine());
-
-                AddCarrito(opcion);
-                    
-                Console.WriteLine("El producto a sido añadido al carrito");
-                Console.WriteLine("¿Quiere seguir comprando? (1.Si 2.No)");
-                char salir = char.Parse(Console.ReadLine());
-                if(salir == 'n' || salir == 'N')
+                if(opcion != 15)
                 {
-                    comprarProducto = false;
+                    AddCarrito(opcion);
+                    Console.WriteLine("El producto a sido añadido al carrito");
+                    Console.WriteLine("¿Quiere seguir comprando? (1.Si 2.No)");
+                    salir = int.Parse(Console.ReadLine());
+                    if(salir == 2)
+                    {
+                        Pagos p = new Pagos();
+                        p.Menu();
+                    }
+                   //el salir no funciona pero una vez se haga carrito y pagar 
+                   //le metemos un if y si selecciona dos que le envia a pagar y no ha salir
                 }
+                else
+                {
+                    salir = 2;
+                }
+
+               
                 Console.ReadKey();
                 //ADDCarrito
                
-            } while (comprarProducto !=true || opcion !=15);
+            } while (salir != 2 || opcion !=15);
         }
         public void ListarAlimentos()
         {

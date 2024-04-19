@@ -14,6 +14,7 @@ namespace MaquinaVendingCosmic {
         public int Peso { get; set; }
         public Material Material { get; set; }
 
+        public MaterialesPreciosos(double precioUnitario) : base(precioUnitario) { }
         public MaterialesPreciosos(int id) : base(id) { }
 
         public MaterialesPreciosos(int id, string nombre, int unidades, double precioUnitario, string descripcion, int peso, Material material)

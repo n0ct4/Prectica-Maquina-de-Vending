@@ -11,7 +11,7 @@ namespace MaquinaVendingCosmic {
         public int Calorias { get; set; }
         public int Grasa { get; set; }
         public int Azucar { get; set; }
-
+        public ProductosAlimenticios(double precioUnitario) : base(precioUnitario) { }
         public ProductosAlimenticios(int id) : base(id) { }
         public ProductosAlimenticios(int id, string nombre, int unidades, double precioUnitario, string descripcion, int calorias, int grasa, int azucar)
             : base(nombre, unidades, precioUnitario, descripcion) {

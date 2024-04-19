@@ -14,6 +14,7 @@ namespace MaquinaVendingCosmic {
         public bool Pilas { get; set; }
         public bool Precargado { get; set; }
 
+        public ProductosElectronicos(double precioUnitario) : base(precioUnitario) { }
         public ProductosElectronicos(int id) : base(id) { }
         public ProductosElectronicos(int id, string nombre, int unidades, double precioUnitario, string descripcion, MaterialE materialE, bool pilas, bool precargado)
             : base(nombre, unidades, precioUnitario, descripcion) {

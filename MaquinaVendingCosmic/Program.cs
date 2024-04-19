@@ -19,7 +19,7 @@ namespace MaquinaVendingCosmic {
 
             ProductosAlimenticios a = new ProductosAlimenticios(stockProductos.Count + 1, "patata", 1, 20, "sabrosa", 2, 0, 20);
             stockProductos.Add(a);
-
+            
             Admin admin = new Admin("admin", "admin");
             usuarioAdmin.Add(admin);
 

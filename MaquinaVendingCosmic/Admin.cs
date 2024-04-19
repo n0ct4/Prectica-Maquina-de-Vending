@@ -31,13 +31,15 @@ namespace MaquinaVendingCosmic {
                         break;
                     case 2://eliminar
 
-                        Console.WriteLine("\n ---Lista de productos totales----");
+                      Console.WriteLine("\n ---Lista de productos totales----");
                         Console.WriteLine("ID del contenido a eliminar: ");
-                        int id_contenido = int.Parse(Console.ReadLine());
-
-                        /*      Producto productoTemp = BuscarContenido(id_contenido);
-                              Producto(productoTemp);
-                          */
+                        ListarProductos();
+                        int c = int.Parse(Console.ReadLine());
+                        Producto w = BuscarProducto(c);
+                        EliminarProducto(w);
+                        
+                       
+                        
 
                         break;
 
@@ -114,13 +116,13 @@ namespace MaquinaVendingCosmic {
               Console.ReadKey();
             }
     }
-/*
-    public void EliminarProducto()
-    { //meter producto en el ()
+
+    public void EliminarProducto(Producto c)
+    { 
 
          if (c != null)
          {
-           ListarProducto.Remove(c);
+           stockProductos.Remove(c);
              Console.WriteLine("Producto eliminado");
          }
          else
@@ -128,7 +130,21 @@ namespace MaquinaVendingCosmic {
              Console.WriteLine("No se ha encontrado ningún producto con el ID introducido.");
          }
     }
-    */
+        public static Producto BuscarProducto(int id)
+        {
+            Producto productoTemp = null;
+            foreach(Producto p in stockProductos)
+            {
+                if(p.Id == id)
+                {
+                    productoTemp = p;
+                }
+            }
+            return productoTemp;
+        }
+            
+       
+    
         //public bool Login(string nombre, string password) {
         /*bool Usuario = false;
         Console.WriteLine("Buenos dias admin:");
