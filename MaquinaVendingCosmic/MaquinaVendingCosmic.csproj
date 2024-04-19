@@ -46,9 +46,7 @@
     <Compile Include="Admin.cs" />
     <Compile Include="Cliente.cs" />
     <Compile Include="MaterialesPreciosos.cs" />
-    <Compile Include="Pagar.cs" />
-    <Compile Include="PagarEfectivo.cs" />
-    <Compile Include="PagarTarjeta.cs" />
+    <Compile Include="Pagos.cs" />
     <Compile Include="Producto.cs" />
     <Compile Include="ProductosAlimenticios.cs" />
     <Compile Include="ProductosElectronicos.cs" />

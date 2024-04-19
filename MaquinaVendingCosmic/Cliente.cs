@@ -43,6 +43,11 @@ namespace MaquinaVendingCosmic
                     Console.WriteLine("El producto a sido añadido al carrito");
                     Console.WriteLine("¿Quiere seguir comprando? (1.Si 2.No)");
                     salir = int.Parse(Console.ReadLine());
+                    if(salir == 2)
+                    {
+                        Pagos p = new Pagos();
+                        p.Menu();
+                    }
                    //el salir no funciona pero una vez se haga carrito y pagar 
                    //le metemos un if y si selecciona dos que le envia a pagar y no ha salir
                 }
