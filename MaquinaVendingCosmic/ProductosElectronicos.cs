@@ -1,7 +1,9 @@
 ﻿using MaquinaVendingCosmic;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -51,5 +53,17 @@ namespace MaquinaVendingCosmic {
             Console.Write("Esta precargado el articulo?: ");
             Precargado = bool.Parse(Console.ReadLine());
         }
+
+        public override string ToString() {
+            return $"{Id},ProductoElectronico,{Nombre},{Unidades},{PrecioUnitario},{Descripcion},{MaterialE},{Pilas},{Precargado}";
+        }
+
+        public override void ToFile() {
+            using (StreamWriter sw = new StreamWriter("ProductosElectronicos.csv", true)) {
+                sw.WriteLine(ToString());
+            }
+        }
+
+
     }
 }

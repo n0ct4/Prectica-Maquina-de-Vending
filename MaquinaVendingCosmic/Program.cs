@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -23,6 +24,7 @@ namespace MaquinaVendingCosmic {
             usuarioAdmin.Add(admin);
 
             int opcion = 0;
+            CargarContenidosDeArchivo();
 
             do {
                 Console.Clear();
@@ -74,6 +76,81 @@ namespace MaquinaVendingCosmic {
                     Console.WriteLine("Usuario o contraseña incorrectos");
                 }
             }
+        }
+
+        private static bool CargarContenidosDeArchivo() {
+            bool productosCargados = false;
+            try {
+                if (File.Exists("productos.txt")) {
+                    StreamReader sr = new StreamReader("productos.txt");
+                    string linea;
+                    while ((linea = sr.ReadLine()) != null) {
+                        productosCargados = true;
+                        string[] datos = linea.Split('|');
+                        if (datos[1] == "Alimento") {
+                            ProductosAlimenticios alimento = new ProductosAlimenticios(int.Parse(datos[0]), datos[1], int.Parse(datos[2]), double.Parse(datos[3]), datos[4], int.Parse(datos[5]), int.Parse(datos[6]), int.Parse(datos[7]));
+                            stockProductos.Add(alimento);
+                        }
+                        else if (datos[1] == "ProductoElectronico") {
+                            MaterialE materialE = new MaterialE();
+                            switch (datos[5]) {
+                                case "Aluminio":
+                                    materialE = MaterialE.Aluminio;
+                                    break;
+                                case "Plastico":
+                                    materialE = MaterialE.Plastico;
+                                    break;
+                                case "Metal":
+                                    materialE = MaterialE.Metal;
+                                    break;
+                                case "Titanio":
+                                    materialE = MaterialE.Titanio;
+                                    break;
+                                default:
+                                    // Manejar el caso en que el valor no sea ni "Metal" ni "Hierro"
+                                    materialE = MaterialE.Metal;// O cualquier otro valor predeterminado que desees
+                                    break;
+                            }
+
+                            ProductosElectronicos productoE = new ProductosElectronicos(int.Parse(datos[0]), datos[1], int.Parse(datos[2]), double.Parse(datos[3]), datos[4], materialE, bool.Parse(datos[6]), bool.Parse(datos[7]));
+                            stockProductos.Add(productoE);
+                        }
+                        else {
+                            Material material = new Material();
+                            switch (datos[6]) {
+                                case "Oro":
+                                    material = Material.Oro;
+                                    break;
+                                case "Plata":
+                                    material = Material.Plata;
+                                    break;
+                                case "Hierro":
+                                    material = Material.Hierro;
+                                    break;
+                                case "Diamante":
+                                    material = Material.Diamante;
+                                    break;
+                                default:
+                                    break;
+                                  
+                            }
+                            MaterialesPreciosos materialP = new MaterialesPreciosos(int.Parse(datos[0]), datos[1], int.Parse(datos[2]), double.Parse(datos[3]), datos[4], int.Parse(datos[5]), material);
+                            stockProductos.Add(materialP);
+                        }
+                    }
+                    sr.Close();
+                }
+                else {
+                    File.Create("productos.txt").Close();
+                }
+            }
+            catch (FileNotFoundException ex) {
+                Console.WriteLine("No se encuentra el archivo de productos: " + ex.Message);
+            }
+            catch (IOException ex) {
+                Console.WriteLine("Error de E/S: " + ex.Message);
+            }
+            return productosCargados;
         }
     }
 }

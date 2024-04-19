@@ -1,6 +1,7 @@
 ﻿using MaquinaVendingCosmic;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -29,6 +30,16 @@ namespace MaquinaVendingCosmic {
             Grasa = int.Parse(Console.ReadLine());
             Console.Write("Azucar: ");
             Azucar = int.Parse(Console.ReadLine());
+        }
+
+        public override string ToString() {
+            return $"{Id},Alimento,{Nombre},{Unidades},{PrecioUnitario},{Descripcion},{Calorias},{Grasa},{Azucar}";
+        }
+
+        public override void ToFile() {
+            using (StreamWriter sw = new StreamWriter("ProductosAlimenticios.csv", true)) {
+                sw.WriteLine(ToString());
+            }
         }
     }
 }

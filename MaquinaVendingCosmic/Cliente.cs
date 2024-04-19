@@ -17,7 +17,7 @@ namespace MaquinaVendingCosmic
         //{
             //stockProductos = _stockProductos;
         //}
-        public void Menu()
+        public virtual void Menu()
         {
             bool comprarProducto = true;
             int opcion;
@@ -101,7 +101,7 @@ namespace MaquinaVendingCosmic
                 { Console.WriteLine("No hay mas productos bro"); }
             }
         }
-        public  void Salir()
+        public virtual void Salir()
         {
             //terminar
         }   

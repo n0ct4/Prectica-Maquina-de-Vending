@@ -1,4 +1,5 @@
 ﻿using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -44,8 +45,11 @@ namespace MaquinaVendingCosmic {
                     case 3://listar
                         ListarProductos();
                         break;
+                    case 4:
+                        Salir();
+                        break;
                     default:
-                        Console.WriteLine("opcion no validad");
+                        Console.WriteLine("opcion no valida");
                         break;
 
                 }
@@ -70,20 +74,24 @@ namespace MaquinaVendingCosmic {
                         ProductosAlimenticios pa = new ProductosAlimenticios(stockProductos.Count);
                         pa.SolicitarDetalles();
                         stockProductos.Add(pa);
+                        pa.ToFile();
                         break;
                     case 2:
                         ProductosElectronicos pe = new ProductosElectronicos(stockProductos.Count);
                         pe.SolicitarDetalles();
                         stockProductos.Add(pe);
+                        pe.ToFile();
                         break;
                     case 3:
                         MaterialesPreciosos mp = new MaterialesPreciosos(stockProductos.Count);
                         mp.SolicitarDetalles();
                         stockProductos.Add(mp);
+                        mp.ToFile();
                         break;
                     default: 
                         break;
                 }
+
             } while (opcion != 4);
         }
         
@@ -156,7 +164,17 @@ namespace MaquinaVendingCosmic {
             return Nombre == nombre && Password == password;
         }
 
-        public void Salir() {
+        public override void Salir() {
+            if (stockProductos.Count > 0) {
+                File.Create("productos.csv").Close();
+                using (StreamWriter sw = new StreamWriter("productos.csv")) {
+                    foreach (Producto p in stockProductos) {
+                        p.ToFile();
+                        sw.WriteLine(p);
+                    }
+                }
+                
+            }
         }
     }
 }

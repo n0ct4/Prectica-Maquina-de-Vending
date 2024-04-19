@@ -38,5 +38,6 @@ namespace MaquinaVendingCosmic {
             Console.Write("Descripcion: ");
             Descripcion = Console.ReadLine();
         }
+        public abstract void ToFile();
     }
 }
