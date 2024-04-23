@@ -8,7 +8,7 @@ namespace MaquinaVendingCosmic
 {
     internal class Cliente
     {
-        public static List<Producto> stockProductos = new List<Producto>();
+        public static List<Producto> stockProductos;
         public static List<int> carrito = new List<int>();
         
         public Cliente() { }

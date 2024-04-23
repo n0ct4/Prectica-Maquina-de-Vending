@@ -219,8 +219,9 @@ namespace MaquinaVendingCosmic
             double moneda2 = 0;
             double moneda1 = 0;
             double moneda50 = 0;
+            double moneda20 = 0;
             double moneda01 = 0;
-            vueltas = llevaPagado - dineroDebe;
+            vueltas = Math.Round(llevaPagado - dineroDebe, 2);
             do
             {
               
@@ -243,17 +244,22 @@ namespace MaquinaVendingCosmic
                     vueltas -= 0.50;
 
                 }
-                else if(vueltas < 0.50 && vueltas > 0)
+                else if(vueltas < 0.50 && vueltas >= 0.20)
+                {
+                    moneda20 = 1 + moneda20;
+                    vueltas -= 0.20;
+                }
+                else if(vueltas < 0.20 && vueltas >= 0.10)
                 {
                     moneda01 = 1 + moneda01;
-                    vueltas -= 0.01;
+                    vueltas -= 0.10;
                 }
 
               
 
             } while (vueltas != 0 ); //ni idea de porque no funciona
             Console.WriteLine("Muchas gracias por su compra");
-            Console.WriteLine($"Monedas de 2$: {moneda2}\n Monedas de 1$: {moneda1}\n Monedas de 0.50$: {moneda50} \n Monedas de 0.01$: {moneda01}");
+            Console.WriteLine($"Monedas de 2$: {moneda2}\n Monedas de 1$: {moneda1}\n Monedas de 0.50$: {moneda50} \n Monedas de 0.10$: {moneda01}");
         }
 
     }
