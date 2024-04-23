@@ -17,8 +17,7 @@ namespace MaquinaVendingCosmic {
             stockProductos = new List<Producto>();
             usuarioAdmin = new List<Admin>();
 
-            ProductosAlimenticios a = new ProductosAlimenticios(stockProductos.Count + 1, "patata", 1, 20, "sabrosa", 2, 0, 20);
-            stockProductos.Add(a);
+           
             
             Admin admin = new Admin("admin", "admin");
             usuarioAdmin.Add(admin);
@@ -88,8 +87,8 @@ namespace MaquinaVendingCosmic {
                         productosCargados = true;
                         string[] datos = linea.Split('|');
                         if (datos[1] == "Alimento") {
-                            ProductosAlimenticios alimento = new ProductosAlimenticios(int.Parse(datos[0]), datos[1], int.Parse(datos[2]), double.Parse(datos[3]), datos[4], int.Parse(datos[5]), int.Parse(datos[6]), int.Parse(datos[7]));
-                            stockProductos.Add(alimento);
+                            ProductosAlimenticios a = new ProductosAlimenticios(int.Parse(datos[0]),datos[2], int.Parse(datos[3]), double.Parse(datos[4]), datos[5], int.Parse(datos[6]), int.Parse(datos[7]), int.Parse(datos[8]));
+                            stockProductos.Add(a);
                         }
                         else if (datos[1] == "ProductoElectronico") {
                             MaterialE materialE = new MaterialE();
@@ -107,13 +106,13 @@ namespace MaquinaVendingCosmic {
                                     materialE = MaterialE.Titanio;
                                     break;
                                 default:
-                                    // Manejar el caso en que el valor no sea ni "Metal" ni "Hierro"
-                                    materialE = MaterialE.Metal;// O cualquier otro valor predeterminado que desees
+                                    materialE = MaterialE.Metal;
                                     break;
                             }
 
                             ProductosElectronicos productoE = new ProductosElectronicos(int.Parse(datos[0]), datos[1], int.Parse(datos[2]), double.Parse(datos[3]), datos[4], materialE, bool.Parse(datos[6]), bool.Parse(datos[7]));
                             stockProductos.Add(productoE);
+
                         }
                         else {
                             Material material = new Material();
@@ -134,6 +133,7 @@ namespace MaquinaVendingCosmic {
                                     break;
                                   
                             }
+
                             MaterialesPreciosos materialP = new MaterialesPreciosos(int.Parse(datos[0]), datos[1], int.Parse(datos[2]), double.Parse(datos[3]), datos[4], int.Parse(datos[5]), material);
                             stockProductos.Add(materialP);
                         }

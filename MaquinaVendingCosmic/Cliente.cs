@@ -7,15 +7,17 @@ using System.Threading.Tasks;
 namespace MaquinaVendingCosmic
 {
     internal class Cliente
+        
     {
-        public static List<Producto> stockProductos = new List<Producto>();
+
+        public static List<Producto> stockProductos;
         public static List<int> carrito = new List<int>();
         
         public Cliente() { }
-        
+
         //public Cliente()//List<Producto> _stockProductos
         //{
-            //stockProductos = _stockProductos;
+        //stockProductos = _stockProductos;
         //}
         public virtual void Menu()
         {
@@ -79,7 +81,10 @@ namespace MaquinaVendingCosmic
             }
 
         }
-      /* public void ListarProductosE()
+        
+        
+        
+      /*public void ListarProductosE()
         {
             bool 
             if()

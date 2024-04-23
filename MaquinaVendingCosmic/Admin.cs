@@ -6,11 +6,11 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MaquinaVendingCosmic {
+
     internal class Admin : Cliente {
         public string Nombre { get; set; }
         public string Password { get; set; }
         public Admin() { }
-
         public Admin(string nombre, string password) {
             Nombre = nombre;
             Password = password;
@@ -59,10 +59,7 @@ namespace MaquinaVendingCosmic {
         }
         public void AddProducto() 
         {
-            if (stockProductos.Count >= 12) {
-                Console.WriteLine("No se pueden añadir mas productos. La maquina esta llena");
-                return;
-            }
+            
             int opcion;
             do {
                 Console.WriteLine("Añadir Productos:");
@@ -182,8 +179,8 @@ namespace MaquinaVendingCosmic {
 
         public override void Salir() {
             if (stockProductos.Count > 0) {
-                File.Create("productos.csv").Close();
-                using (StreamWriter sw = new StreamWriter("productos.csv")) {
+                File.Create("productos.txt").Close();
+                using (StreamWriter sw = new StreamWriter("productos.txt")) {
                     foreach (Producto p in stockProductos) {
                         p.ToFile();
                         sw.WriteLine(p);

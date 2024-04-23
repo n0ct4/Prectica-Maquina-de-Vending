@@ -59,11 +59,12 @@ namespace MaquinaVendingCosmic {
             }
         }
         public override string ToString() {
-            return $"{Id},MaterialPrecioso,{Nombre},{Unidades},{PrecioUnitario},{Descripcion},{Peso},{Material}";
+            return $"{Id}|MaterialPrecioso|{Nombre}|{Unidades}|{PrecioUnitario}|{Descripcion}|{Peso}|{Material}";
+
         }
 
         public override void ToFile() {
-            using (StreamWriter sw = new StreamWriter("MaterialPreciosos.csv", true)) {
+            using (StreamWriter sw = new StreamWriter("MaterialPreciosos.txt", true)) {
                 sw.WriteLine(ToString());
             }
         }
