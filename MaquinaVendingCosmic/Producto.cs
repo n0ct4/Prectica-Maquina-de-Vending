@@ -6,13 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MaquinaVendingCosmic {
-    internal abstract class Producto {
+    internal  class Producto {
         public int Id { get; private set; }
         public string Nombre { get; set; }
         public int Unidades { get; set; }
         public double PrecioUnitario { get; set; }
         public string Descripcion { get; set; }
-
+        public Producto() { }
         public Producto(double precioUnitario)
         {
             PrecioUnitario = precioUnitario;

@@ -22,7 +22,8 @@ namespace MaquinaVendingCosmic {
                 Console.WriteLine("1. Añadir Producto");
                 Console.WriteLine("2. Eliminar producto");
                 Console.WriteLine("3. Listar productos");
-                Console.WriteLine("4. Salir");
+                Console.WriteLine("4. Comprar Productos");
+                Console.WriteLine("5. Salir");
                 opcion = int.Parse(Console.ReadLine());
                 switch (opcion) {
                     case 1: //añadir
@@ -33,9 +34,11 @@ namespace MaquinaVendingCosmic {
                       Console.WriteLine("\n ---Lista de productos totales----");
                         Console.WriteLine("ID del contenido a eliminar: ");
                         ListarProductos();
-                        int c = int.Parse(Console.ReadLine());
-                        Producto w = BuscarProducto(c);
-                        EliminarProducto(w);
+                        //int id = int.Parse(Console.ReadLine()); //da error al momento de introducir un numero
+                        /*Producto p = new Producto();
+                        p.Id = int.Parse(Console.ReadLine()); */        
+                       // Producto w = BuscarProducto(p.id);
+                        //EliminarProducto(w);
                         
                        
                         
@@ -46,12 +49,16 @@ namespace MaquinaVendingCosmic {
                     case 3://listar
                         ListarProductos();
                         break;
+                        case 4: 
+                            Cliente c = new Cliente();
+                        c.Menu();
+                            break;
                     default:
                         Console.WriteLine("opcion no validad");
                         break;
 
                 }
-            } while (opcion != 4);
+            } while (opcion != 5);
         }
         public void AddProducto() 
         {

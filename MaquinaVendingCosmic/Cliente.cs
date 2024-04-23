@@ -28,7 +28,7 @@ namespace MaquinaVendingCosmic
 
                 Console.WriteLine("Buenos dias que desea comprar: ");
                 Console.WriteLine("Alimentos");
-                ListarAlimentos();
+                ListarAlimentos();  
               //  Console.WriteLine("Productos Electronicos");
              //  ListarProductosE();
             //    Console.WriteLine("Materiales preciosos");
@@ -45,6 +45,7 @@ namespace MaquinaVendingCosmic
                     salir = int.Parse(Console.ReadLine());
                     if(salir == 2)
                     {
+                        
                         Pagos p = new Pagos();
                         p.Menu();
                     }
@@ -79,6 +80,7 @@ namespace MaquinaVendingCosmic
             }
 
         }
+
       /* public void ListarProductosE()
         {
             bool 
@@ -111,6 +113,7 @@ namespace MaquinaVendingCosmic
                 { Console.WriteLine("No hay mas productos bro"); }
             }
         }
+
         public  void Salir()
         {
             //terminar

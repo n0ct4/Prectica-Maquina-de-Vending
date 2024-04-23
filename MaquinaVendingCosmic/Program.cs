@@ -40,6 +40,9 @@ namespace MaquinaVendingCosmic {
                         break;
                     case 2:
                         // Menu id producto y mostrar info
+                        Admin d = new Admin();
+                        d.ListarProductos();    
+                        
                         break;
                     case 3:
                         // Menu admin
@@ -75,5 +78,6 @@ namespace MaquinaVendingCosmic {
                 }
             }
         }
+       
     }
 }
