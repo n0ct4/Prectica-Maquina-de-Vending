@@ -14,7 +14,7 @@ namespace MaquinaVendingCosmic {
             Nombre = nombre;
             Password = password;
         }
-        public void Menu() {
+        public void Menus() {
             int opcion;
             do {
                 Console.Clear();
@@ -34,12 +34,11 @@ namespace MaquinaVendingCosmic {
                       Console.WriteLine("\n ---Lista de productos totales----");
                         Console.WriteLine("ID del contenido a eliminar: ");
                         ListarProductos();
-                        //int id = int.Parse(Console.ReadLine()); //da error al momento de introducir un numero
-                        /*Producto p = new Producto();
-                        p.Id = int.Parse(Console.ReadLine()); */        
-                       // Producto w = BuscarProducto(p.id);
-                        //EliminarProducto(w);
-                        
+                        int id = int.Parse(Console.ReadLine()); //da error al momento de introducir un numero
+                        Producto p =BuscarProducto(id);
+                        EliminarProducto(p);        
+                       ;
+                                              
                        
                         
 

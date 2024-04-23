@@ -29,10 +29,10 @@ namespace MaquinaVendingCosmic
                 Console.WriteLine("Buenos dias que desea comprar: ");
                 Console.WriteLine("Alimentos");
                 ListarAlimentos();  
-              //  Console.WriteLine("Productos Electronicos");
-             //  ListarProductosE();
-            //    Console.WriteLine("Materiales preciosos");
-               // ListaProductosMP();
+               Console.WriteLine("Productos Electronicos");
+               ListarProductosE();
+                Console.WriteLine("Materiales preciosos");
+             ListaProductosMP();
                 Console.WriteLine(" ");
                 Console.WriteLine("Elija el producto deseado: ");
                 Console.WriteLine("De al numero 15 para salir: ");
@@ -74,6 +74,7 @@ namespace MaquinaVendingCosmic
                 foreach (Producto c in stockProductos) {
                     if (c is Producto) {
                         Console.WriteLine($"{c.Id} --- {c.Nombre}" );
+
                     }
                 }
                 Console.ReadKey();
@@ -81,22 +82,46 @@ namespace MaquinaVendingCosmic
 
         }
 
-      /* public void ListarProductosE()
+       public void ListarProductosE()
         {
-            bool 
-            if()
-            foreach (ProductosElectronicos p in stockProductos)
+            Console.WriteLine("  --- Listado de productos ---  ");
+            Console.WriteLine();
+            if (stockProductos == null)
             {
-                Console.WriteLine($"(ID) - {p.Id}: {p.Nombre}\n");
+                Console.WriteLine("No hay ningún producto");
+            }
+            else
+            {
+                foreach (Producto c in stockProductos)
+                {
+                    if (c is Producto)
+                    {
+                        Console.WriteLine($"{c.Id} --- {c.Nombre}");
+                    }
+                }
+                Console.ReadKey();
             }
         }
         public void ListaProductosMP()
         {
-            foreach (MaterialesPreciosos p in stockProductos)
+            Console.WriteLine("  --- Listado de productos ---  ");
+            Console.WriteLine();
+            if (stockProductos == null)
             {
-                Console.WriteLine($"(ID) - {p.Id}: {p.Nombre}\n");
+                Console.WriteLine("No hay ningún producto");
             }
-        }*/
+            else
+            {
+                foreach (Producto c in stockProductos)
+                {
+                    if (c is Producto)
+                    {
+                        Console.WriteLine($"{c.Id} --- {c.Nombre}");
+                    }
+                }
+                Console.ReadKey();
+            }
+        }
 
 
 
