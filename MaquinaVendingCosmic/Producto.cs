@@ -12,7 +12,7 @@ namespace MaquinaVendingCosmic {
         public int Unidades { get; set; }
         public double PrecioUnitario { get; set; }
         public string Descripcion { get; set; }
-
+        public Producto() { }
         public Producto(double precioUnitario)
         {
             PrecioUnitario = precioUnitario;

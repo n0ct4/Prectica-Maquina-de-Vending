@@ -33,8 +33,10 @@ namespace MaquinaVendingCosmic
             do
             {
                 //Falta declarar unicamente el carrito los metodo de pago y vueltas ya estan
+                Cliente c = new Cliente();
+
                 Console.Clear();
-                Precio = 10;
+                Precio = 10.00;
                 Console.Write($"El precio a pagar es: {Precio}");
                 // Precio = ;
                 Console.WriteLine("--- ¿Con qué quieres pagar? ---");
@@ -108,95 +110,174 @@ namespace MaquinaVendingCosmic
         {
             double dineroDebe = Precio;
             double llevaPagado = DineroIngresado;
-            double vueltas = Vuelta;
-            Console.WriteLine("Va a pagar a 1.Billetes o 2.Monedas");
-
-            int opcionCash = int.Parse(Console.ReadLine());
-            if (opcionCash == 1)
+       
+            do
             {
-
-                do
-                {
-                    Console.WriteLine($"Debes {Precio}$");
-                    Console.WriteLine($"Has metido:{llevaPagado}");
-                    Console.WriteLine("¿Con que billete va a pagar?");
-                    Console.WriteLine("1. 50$");
-                    Console.WriteLine("2. 20$");
-                    Console.WriteLine("3. 10$");
-                    Console.WriteLine("4. 5$");
-                    int opcion = int.Parse(Console.ReadLine());
-                    switch (opcion)
-                    {
-                        case 1:
-                            llevaPagado = llevaPagado + 50;
-                            break;
-                        case 2:
-                            llevaPagado = llevaPagado + 20;
-                            break;
-                        case 3:
-                            llevaPagado = llevaPagado + 10;
-                            break;
-                        case 4:
-                            llevaPagado = llevaPagado + 5;
-                            break;
-
-                    }
-                } while (dineroDebe >= llevaPagado);
-                if (dineroDebe == llevaPagado)
-                {
-                    Console.WriteLine("Gracias por su compra :) ");
-                }
-                else if (dineroDebe < llevaPagado)
-                {
-                    vueltas = llevaPagado - dineroDebe;
-                    Console.WriteLine($"sus vueltas son: {vueltas}");
-                    Console.WriteLine("Muchas gracias por su compra");
-                }
-            }
-            else if (opcionCash == 2)
-            {
-                do { 
                 Console.Clear();
                 Console.WriteLine($"Debes {Precio}$");
                 Console.WriteLine($"Has metido:{llevaPagado}");
-                Console.WriteLine("¿Con que monedas va a pagar?");
-                Console.WriteLine("1. 2$");
-                Console.WriteLine("2. 1$");
-                Console.WriteLine("3. 0.50$");
-                Console.WriteLine("4. 0.20$");
+                Console.WriteLine("Indique como va a pagar?");
+                Console.WriteLine("Billetes");
+                Console.WriteLine("1. 50$");
+                Console.WriteLine("2. 20$");
+                Console.WriteLine("3. 10$");
+                Console.WriteLine("4. 5$");
+                Console.WriteLine("Monedas");
+                Console.WriteLine("5. 2$");
+                Console.WriteLine("6. 1$");
+                Console.WriteLine("7. 0.50$");
+                Console.WriteLine("8. 0.20$");
                 int opcion = int.Parse(Console.ReadLine());
                 switch (opcion)
                 {
                     case 1:
-                        llevaPagado = llevaPagado + 2;
+                        llevaPagado = llevaPagado + 50;
                         break;
                     case 2:
-                        llevaPagado = llevaPagado + 1;
+                        llevaPagado = llevaPagado + 20;
                         break;
                     case 3:
-                        llevaPagado = llevaPagado + 0.50;
+                        llevaPagado = llevaPagado + 10;
                         break;
                     case 4:
-                        llevaPagado = llevaPagado + 0.20;
+                        llevaPagado = llevaPagado + 5;
                         break;
-
+                    case 5:
+                        llevaPagado = llevaPagado + 2;
+                        break;
+                    case 6:
+                        llevaPagado += 1;
+                        break;
+                    case 7:
+                        llevaPagado += 0.5;
+                        break;
+                    case 8:
+                        llevaPagado += 0.20;
+                        break;
                 }
-
-            } while (dineroDebe >= llevaPagado) ;
-        } 
-
+            } while (dineroDebe > llevaPagado);
             if (dineroDebe == llevaPagado)
             {
                 Console.WriteLine("Gracias por su compra :) ");
             }
             else if (dineroDebe < llevaPagado)
             {
+                Console.Clear();
+                Console.WriteLine($"Pago {llevaPagado}");
+                Vueltas(dineroDebe, llevaPagado);
+                /*double moneda2 = 0;
+                double moneda1 = 0;
+                double moneda50 = 0;
+                double moneda01 = 0;
                 vueltas = llevaPagado - dineroDebe;
-                Console.Clear() ;   
-                Console.WriteLine($" Pago: {llevaPagado}") ;
-                Console.WriteLine($"sus vueltas son: {vueltas}");
+                do
+                {
+                    int nmonedas2;
+                    int nmonedas1;  
+                    int nmonedas50;
+                    int nmonedas01;
+                    if (vueltas >= 2)
+                    { //poner numero de monedas a devolver Para tenerlo ya hecho
+                        
+                        moneda2 = +1;
+                        vueltas -= 2;
+                        
+                    }
+                    else if (vueltas < 2 && vueltas >= 1)
+                    {
+                        moneda1 = +1;
+                        vueltas -= 1;
+
+                    }
+                    else if (vueltas < 1 && vueltas >= 0.50)
+                    {
+                        moneda50 = +1;
+                        vueltas -= 0.50;
+
+                    }
+                    else
+                    {
+                        moneda01 = +1;
+                        vueltas -= 0.01;
+                    }
+                    
+                    
+                } while (vueltas != 0);
+                Console.WriteLine($"{moneda2}, {moneda1}, {moneda50} , {moneda01}"); */
+              
+                   /* vueltas = llevaPagado - dineroDebe;
+                    Console.WriteLine($"sus vueltas son: {vueltas}");
+                    Console.WriteLine("Muchas gracias por su compra");*/
+           
+
+            }
+
+        }
+     //   public void Vueltas(double dineroDebe, double llevaPagado)
+      //7  {
+            /*    double vueltas;
+                double moneda2 = 0;
+                double moneda1 = 0;
+                double moneda50 = 0;
+                double moneda01 = 0;
+                vueltas = Math.Round(llevaPagado - dineroDebe, 2);
+                do
+                {
+
+                    if (vueltas >= 2)
+                    { //poner numero de monedas a devolver Para tenerlo ya hecho
+
+                        moneda2 = 1 + moneda2;
+                        vueltas -= 2;
+                        Console.Write("0.4 ");
+
+                    }
+                    else if (vueltas < 2 && vueltas >= 1)
+                    {
+                        moneda1 = 1 + moneda1;
+                        vueltas -= 1;
+                        Console.Write("0.3 ");
+                    }
+                    else if (vueltas < 1 && vueltas >= 0.50)
+                    {
+                        moneda50 = 1 + moneda50;
+                        vueltas -= 0.50;
+                        Console.Write("0.2 ");
+
+                    }
+                    else if(vueltas < 0.50 && vueltas > 0)
+                    {
+                        moneda01 = 1 + moneda01;
+                        vueltas -= 0.10;
+                        Console.Write("0.1 ");
+                    }
+
+
+
+                } while (vueltas >= 0 ); //ni idea de porque no funciona
                 Console.WriteLine("Muchas gracias por su compra");
+                Console.WriteLine($"Monedas de 2$: {moneda2}\n Monedas de 1$: {moneda1}\n Monedas de 0.50$: {moneda50} \n Monedas de 0.10$: {moneda01}");*/
+          
+  //      }
+        public void Vueltas(double montoAPagar, double montoIngresado)
+        {
+            // Calculamos las vueltas
+            double vueltas = Math.Round(montoIngresado - montoAPagar, 2);
+
+            // Definimos el valor de cada moneda
+            double[] monedas = { 2.0, 1.0, 0.50, 0.20, 0.10 };
+
+            // Recorremos el array de monedas para calcular la cantidad de cada una
+            foreach (double moneda in monedas)
+            {
+                int cantidad = (int)(vueltas / moneda);
+                vueltas -= cantidad * moneda;
+                if (cantidad > 0)
+                {
+                    Console.WriteLine($"Se le han devuelto  { cantidad}  monedas de  { moneda} + euros.");
+                }
             }
         }
+
     }
 }

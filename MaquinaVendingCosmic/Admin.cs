@@ -16,7 +16,7 @@ namespace MaquinaVendingCosmic {
             Password = password;
 
         }
-        public void Menu() {
+        public void Menus() {
             int opcion;
             do {
                 Console.Clear();
@@ -24,7 +24,8 @@ namespace MaquinaVendingCosmic {
                 Console.WriteLine("1. Añadir Producto");
                 Console.WriteLine("2. Eliminar producto");
                 Console.WriteLine("3. Listar productos");
-                Console.WriteLine("4. Salir");
+                Console.WriteLine("4. Comprar Productos");
+                Console.WriteLine("5. Salir");
                 opcion = int.Parse(Console.ReadLine());
                 switch (opcion) {
                     case 1: //añadir
@@ -35,10 +36,18 @@ namespace MaquinaVendingCosmic {
                       Console.WriteLine("\n ---Lista de productos totales----");
                         Console.WriteLine("ID del contenido a eliminar: ");
                         ListarProductos();
+
                         //int c = int.Parse(Console.ReadLine());
                         //Producto w = BuscarProducto(c);
                         //EliminarProducto(w);
                         
+
+                        /*int id = int.Parse(Console.ReadLine()); //da error al momento de introducir un numero
+                        Producto p = BuscarProducto(id);
+                        EliminarProducto(p);        
+                        */
+                                              
+
                        
                         
 
@@ -48,15 +57,22 @@ namespace MaquinaVendingCosmic {
                     case 3://listar
                         ListarProductos();
                         break;
+
                     case 4:
-                        Salir();
+                        Cliente c = new Cliente();
+                        c.Menu();
                         break;
+
+                        case 5:
+                        Salir();
+                            break;
+
                     default:
                         Console.WriteLine("opcion no valida");
                         break;
 
                 }
-            } while (opcion != 4);
+            } while (opcion != 5);
         }
         public void AddProducto() 
         {

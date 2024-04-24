@@ -17,11 +17,20 @@ namespace MaquinaVendingCosmic {
             stockProductos = new List<Producto>();
             usuarioAdmin = new List<Admin>();
 
+
             //ProductosAlimenticios a = new ProductosAlimenticios(stockProductos.Count + 1, "patata", 1, 20, "rica", 100, 10, 1);
             //stockProductos.Add(a);
 
 
             Admin admin = new Admin("admin", "admin", stockProductos);
+
+           /* ProductosAlimenticios p = new ProductosAlimenticios(0, "patata", 1, 150, "rica", 12, 10, 0);
+            stockProductos.Add(p); */
+            //ProductosAlimenticios a = new ProductosAlimenticios(stockProductos.Count + 1, "patata", 1, 20, "sabrosa", 2, 0, 20);
+            //stockProductos.Add(a);
+            
+            //Admin admin = new Admin("admin", "admin");
+
             usuarioAdmin.Add(admin);
 
             int opcion = 0;
@@ -43,6 +52,9 @@ namespace MaquinaVendingCosmic {
                         break;
                     case 2:
                         // Menu id producto y mostrar info
+                        Admin d = new Admin();
+                        d.ListarProductos();    
+                        
                         break;
                     case 3:
                         // Menu admin
@@ -71,13 +83,14 @@ namespace MaquinaVendingCosmic {
             foreach(Admin a in usuarioAdmin) {
                 if (a.Login(nombre, password)) {
                     usuarioEncontrado = true;
-                    a.Menu();
+                    a.Menus();
                 }
                 if (!usuarioEncontrado) {
                     Console.WriteLine("Usuario o contraseña incorrectos");
                 }
             }
         }
+
 
         private static bool CargarContenidosDeArchivo() {
             bool productosCargados = false;
@@ -154,5 +167,6 @@ namespace MaquinaVendingCosmic {
             }
             return productosCargados;
         }
+
     }
 }
