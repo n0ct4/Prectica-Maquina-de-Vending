@@ -16,6 +16,8 @@ namespace MaquinaVendingCosmic {
             stockProductos = new List<Producto>();
             usuarioAdmin = new List<Admin>();
 
+           /* ProductosAlimenticios p = new ProductosAlimenticios(0, "patata", 1, 150, "rica", 12, 10, 0);
+            stockProductos.Add(p); */
             ProductosAlimenticios a = new ProductosAlimenticios(stockProductos.Count + 1, "patata", 1, 20, "sabrosa", 2, 0, 20);
             stockProductos.Add(a);
             
@@ -71,7 +73,7 @@ namespace MaquinaVendingCosmic {
             foreach(Admin a in usuarioAdmin) {
                 if (a.Login(nombre, password)) {
                     usuarioEncontrado = true;
-                    a.Menu();
+                    a.Menus();
                 }
                 if (!usuarioEncontrado) {
                     Console.WriteLine("Usuario o contraseña incorrectos");
