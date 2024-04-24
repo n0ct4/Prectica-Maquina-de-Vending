@@ -11,9 +11,10 @@ namespace MaquinaVendingCosmic {
         public string Nombre { get; set; }
         public string Password { get; set; }
         public Admin() { }
-        public Admin(string nombre, string password) {
+        public Admin(string nombre, string password, List<Producto> listaProductos) : base (listaProductos) {
             Nombre = nombre;
             Password = password;
+
         }
         public void Menu() {
             int opcion;
@@ -34,9 +35,9 @@ namespace MaquinaVendingCosmic {
                       Console.WriteLine("\n ---Lista de productos totales----");
                         Console.WriteLine("ID del contenido a eliminar: ");
                         ListarProductos();
-                        int c = int.Parse(Console.ReadLine());
-                        Producto w = BuscarProducto(c);
-                        EliminarProducto(w);
+                        //int c = int.Parse(Console.ReadLine());
+                        //Producto w = BuscarProducto(c);
+                        //EliminarProducto(w);
                         
                        
                         
@@ -114,64 +115,64 @@ namespace MaquinaVendingCosmic {
             }
     }
 
-    public void EliminarProducto(Producto c)
-    { 
+        /*public void EliminarProducto(Producto c)
+        { 
 
-         if (c != null)
-         {
-           stockProductos.Remove(c);
-             Console.WriteLine("Producto eliminado");
-         }
-         else
-         {
-             Console.WriteLine("No se ha encontrado ningún producto con el ID introducido.");
-         }
-    }
-        public static Producto BuscarProducto(int id)
-        {
-            Producto productoTemp = null;
-            foreach(Producto p in stockProductos)
-            {
-                if(p.Id == id)
-                {
-                    productoTemp = p;
-                }
-            }
-            return productoTemp;
+             if (c != null)
+             {
+               stockProductos.Remove(c);
+                 Console.WriteLine("Producto eliminado");
+             }
+             else
+             {
+                 Console.WriteLine("No se ha encontrado ningún producto con el ID introducido.");
+             }
         }
-            
-       
-    
-        //public bool Login(string nombre, string password) {
-        /*bool Usuario = false;
-        Console.WriteLine("Buenos dias admin:");
-
-
-        int contadorIntentos = 0;
-        do {
-
-            Console.WriteLine("Dime tu nombre");
-            string Nickname = Console.ReadLine();
-            Console.WriteLine("Dime tu contraseña");
-            string Contraseña = Console.ReadLine();
-            string nombreUsuario = nombre;
-            string contraseña = password;
-            if (nombreUsuario == Nickname && contraseña == Contraseña) {
-                Console.WriteLine("Eres admin:(comprobacion)");
-                Usuario = true;
+            public static Producto BuscarProducto(int id)
+            {
+                Producto productoTemp = null;
+                foreach(Producto p in stockProductos)
+                {
+                    if(p.Id == id)
+                    {
+                        productoTemp = p;
+                    }
+                }
+                return productoTemp;
             }
-            else {
-                Console.WriteLine("Usuario o contraseña incorrecta");
-                contadorIntentos++;
-            }
-        } while (Usuario == false || contadorIntentos == 3);
-        Console.WriteLine("ha alcanzado el numero de intentos");
-        Console.WriteLine("Saliendo...");
-        return Usuario;
 
-      }
 
-    /*/
+
+            //public bool Login(string nombre, string password) {
+            bool Usuario = false;
+            Console.WriteLine("Buenos dias admin:");
+
+
+            int contadorIntentos = 0;
+            do {
+
+                Console.WriteLine("Dime tu nombre");
+                string Nickname = Console.ReadLine();
+                Console.WriteLine("Dime tu contraseña");
+                string Contraseña = Console.ReadLine();
+                string nombreUsuario = nombre;
+                string contraseña = password;
+                if (nombreUsuario == Nickname && contraseña == Contraseña) {
+                    Console.WriteLine("Eres admin:(comprobacion)");
+                    Usuario = true;
+                }
+                else {
+                    Console.WriteLine("Usuario o contraseña incorrecta");
+                    contadorIntentos++;
+                }
+            } while (Usuario == false || contadorIntentos == 3);
+            Console.WriteLine("ha alcanzado el numero de intentos");
+            Console.WriteLine("Saliendo...");
+            return Usuario;
+
+          }
+
+        /*/
 
         public bool Login(string nombre, string password) {
             return Nombre == nombre && Password == password;

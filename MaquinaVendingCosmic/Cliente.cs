@@ -4,68 +4,67 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace MaquinaVendingCosmic
-{
-    internal class Cliente
-        
-    {
+namespace MaquinaVendingCosmic {
+    internal class Cliente {
 
-        public static List<Producto> stockProductos;
+        //public static List<Producto> stockProductos = new List<Producto>();
         public static List<int> carrito = new List<int>();
-        
+
+        public List<Producto> stockProductos;
+
         public Cliente() { }
 
+        public Cliente(List<Producto> listaProductos) {
+            stockProductos = listaProductos;
+        }
+
+        
         //public Cliente()//List<Producto> _stockProductos
         //{
         //stockProductos = _stockProductos;
         //}
-        public virtual void Menu()
-        {
+        public virtual void Menu() {
             int salir;
             int opcion = 0;
-            do
-            {
-               
+            do {
+
                 Console.Clear();
 
                 Console.WriteLine("Buenos dias que desea comprar: ");
-                Console.WriteLine("Alimentos");
+                //Console.WriteLine("Alimentos");
                 ListarAlimentos();
-              //  Console.WriteLine("Productos Electronicos");
-             //  ListarProductosE();
-            //    Console.WriteLine("Materiales preciosos");
-               // ListaProductosMP();
+                Console.WriteLine("Productos Electronicos");
+                //ListarProductosE();
+                Console.WriteLine("Materiales preciosos");
+                //ListaProductosMP();
                 Console.WriteLine(" ");
                 Console.WriteLine("Elija el producto deseado: ");
                 Console.WriteLine("De al numero 15 para salir: ");
                 opcion = int.Parse(Console.ReadLine());
-                if(opcion != 15)
-                {
+                if (opcion != 15) {
                     AddCarrito(opcion);
                     Console.WriteLine("El producto a sido añadido al carrito");
                     Console.WriteLine("¿Quiere seguir comprando? (1.Si 2.No)");
                     salir = int.Parse(Console.ReadLine());
-                    if(salir == 2)
-                    {
+                    if (salir == 2) {
+
                         Pagos p = new Pagos();
                         p.Menu();
                     }
-                   //el salir no funciona pero una vez se haga carrito y pagar 
-                   //le metemos un if y si selecciona dos que le envia a pagar y no ha salir
+                    //el salir no funciona pero una vez se haga carrito y pagar 
+                    //le metemos un if y si selecciona dos que le envia a pagar y no ha salir
                 }
-                else
-                {
+                else {
                     salir = 2;
                 }
 
-               
+
                 Console.ReadKey();
                 //ADDCarrito
-               
-            } while (salir != 2 || opcion !=15);
+
+            } while (salir != 2 || opcion != 15);
         }
-        public void ListarAlimentos()
-        {
+        public void ListarAlimentos() {
             Console.WriteLine("  --- Listado de productos ---  ");
             Console.WriteLine();
             if (stockProductos == null) {
@@ -74,51 +73,76 @@ namespace MaquinaVendingCosmic
             else {
                 foreach (Producto c in stockProductos) {
                     if (c is Producto) {
-                        Console.WriteLine($"{c.Id} --- {c.Nombre}" );
+                        Console.WriteLine($"{c.Id} - {c.Nombre}\t\nPrecio: {c.PrecioUnitario}");
                     }
                 }
                 Console.ReadKey();
             }
 
         }
-        
-        
-        
-      /*public void ListarProductosE()
-        {
-            bool 
-            if()
-            foreach (ProductosElectronicos p in stockProductos)
-            {
-                Console.WriteLine($"(ID) - {p.Id}: {p.Nombre}\n");
-            }
-        }
-        public void ListaProductosMP()
-        {
-            foreach (MaterialesPreciosos p in stockProductos)
-            {
-                Console.WriteLine($"(ID) - {p.Id}: {p.Nombre}\n");
-            }
-        }*/
-
-
-
-       public void AddCarrito(int idElegido)
-        {
+        public void AddCarrito(int idElegido) {
             int carritoMaximo = 12;
-            if (carritoMaximo >= carrito.Count)
-            {
+            if (carritoMaximo >= carrito.Count) {
                 carrito.Add(idElegido);
                 Console.WriteLine($"IDSSSS ----->>>>>> {idElegido}");
             }
-            else
-            {
+            else {
                 { Console.WriteLine("No hay mas productos bro"); }
             }
         }
-        public virtual void Salir()
-        {
-            //terminar
-        }   
+
+
+        public virtual void Salir() { }
     }
 }
+
+
+/*public void ListarProductosE()
+
+ {
+     Console.WriteLine("  --- Listado de productos ---  ");
+     Console.WriteLine();
+     if (stockProductos == null)
+     {
+         Console.WriteLine("No hay ningún producto");
+     }
+     else
+     {
+         foreach (Producto c in stockProductos)
+         {
+             if (c is Producto)
+             {
+                 Console.WriteLine($"{c.Id} --- {c.Nombre}");
+             }
+         }
+         Console.ReadKey();
+     }
+ }
+ public void ListaProductosMP()
+ {
+     Console.WriteLine("  --- Listado de productos ---  ");
+     Console.WriteLine();
+     if (stockProductos == null)
+     {
+         Console.WriteLine("No hay ningún producto");
+     }
+     else
+     {
+         foreach (Producto c in stockProductos)
+         {
+             if (c is Producto)
+             {
+                 Console.WriteLine($"{c.Id} --- {c.Nombre}");
+             }
+         }
+         Console.ReadKey();
+     }
+ }
+
+
+*/
+
+
+
+
+
