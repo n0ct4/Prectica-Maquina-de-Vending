@@ -14,9 +14,8 @@ namespace MaquinaVendingCosmic {
         public bool Pilas { get; set; }
         public bool Precargado { get; set; }
 
-        public ProductosElectronicos(double precioUnitario) : base(precioUnitario) { }
-        public ProductosElectronicos(int id) : base(id) { }
-        public ProductosElectronicos(int id, string nombre, int unidades, double precioUnitario, string descripcion, MaterialE materialE, bool pilas, bool precargado)
+        public ProductosElectronicos() { }
+        public ProductosElectronicos(string nombre, int unidades, double precioUnitario, string descripcion, MaterialE materialE, bool pilas, bool precargado)
             : base(nombre, unidades, precioUnitario, descripcion) {
             MaterialE = materialE;
             Pilas = pilas;
@@ -56,7 +55,7 @@ namespace MaquinaVendingCosmic {
         }
 
         public override string ToString() {
-            return $"{Id}|ProductoElectronico|{Nombre}|{Unidades}|{PrecioUnitario}|{Descripcion}|{MaterialE}|{Pilas}|{Precargado}";
+            return $"ProductoElectronico|{Nombre}|{Unidades}|{PrecioUnitario}|{Descripcion}|{MaterialE}|{Pilas}|{Precargado}";
         }
 
         public override void ToFile() {

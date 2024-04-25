@@ -20,7 +20,9 @@ namespace MaquinaVendingCosmic {
             int opcion;
             do {
                 Console.Clear();
-                Console.WriteLine("Que desea hacer:");
+                Console.WriteLine("------------------------------------");
+                Console.WriteLine(" - Bienvenido, Admin! - ");
+                Console.WriteLine("------------------------------------");
                 Console.WriteLine("1. Añadir Producto");
                 Console.WriteLine("2. Eliminar producto");
                 Console.WriteLine("3. Listar productos");
@@ -79,6 +81,7 @@ namespace MaquinaVendingCosmic {
             
             int opcion;
             do {
+                Console.Clear();
                 Console.WriteLine("Añadir Productos:");
                 Console.WriteLine("1. Alimentos");
                 Console.WriteLine("2. Productos electronicos");
@@ -87,19 +90,19 @@ namespace MaquinaVendingCosmic {
                 opcion = int.Parse(Console.ReadLine());
                 switch (opcion) {
                     case 1:
-                        ProductosAlimenticios pa = new ProductosAlimenticios(stockProductos.Count);
+                        ProductosAlimenticios pa = new ProductosAlimenticios();
                         pa.SolicitarDetalles();
                         stockProductos.Add(pa);
                         pa.ToFile();
                         break;
                     case 2:
-                        ProductosElectronicos pe = new ProductosElectronicos(stockProductos.Count);
+                        ProductosElectronicos pe = new ProductosElectronicos();
                         pe.SolicitarDetalles();
                         stockProductos.Add(pe);
                         pe.ToFile();
                         break;
                     case 3:
-                        MaterialesPreciosos mp = new MaterialesPreciosos(stockProductos.Count);
+                        MaterialesPreciosos mp = new MaterialesPreciosos();
                         mp.SolicitarDetalles();
                         stockProductos.Add(mp);
                         mp.ToFile();

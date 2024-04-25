@@ -38,11 +38,13 @@ namespace MaquinaVendingCosmic {
 
             do {
                 Console.Clear();
-                Console.WriteLine("--- Máquina Expendedora ---");
-                Console.WriteLine("1. Comprar productos");
-                Console.WriteLine("2. Mostrar información del producto");
+                Console.WriteLine("------------------------------------");
+                Console.WriteLine(" - Máquina Expendedora Cósmica - ");
+                Console.WriteLine("------------------------------------");
+                Console.WriteLine("\t1. Comprar productos");
+                Console.WriteLine("\t2. Mostrar información del producto");
 
-                Console.WriteLine("4. Salir");
+                Console.WriteLine("\t4. Salir");
                 Console.Write("\nSeleccione una opción: ");
                 opcion = int.Parse(Console.ReadLine());
                 switch (opcion) {
@@ -74,6 +76,10 @@ namespace MaquinaVendingCosmic {
         }
 
         public static void LoginAdmin() {
+            Console.Clear();
+            Console.WriteLine("------------------------------------");
+            Console.WriteLine(" - Login de Admin - ");
+            Console.WriteLine("------------------------------------");
             Console.Write("Nombre de usuario: ");
             string nombre = Console.ReadLine();
             Console.Write("Constraseña: ");
@@ -101,11 +107,12 @@ namespace MaquinaVendingCosmic {
                     while ((linea = sr.ReadLine()) != null) {
                         productosCargados = true;
                         string[] datos = linea.Split('|');
-                        if (datos[1] == "Alimento") {
-                            ProductosAlimenticios a = new ProductosAlimenticios(int.Parse(datos[0]), datos[2], int.Parse(datos[3]), double.Parse(datos[4]), datos[5], int.Parse(datos[6]), int.Parse(datos[7]), int.Parse(datos[8]));
+                        if (datos[0] == "Alimento") {
+                            ProductosAlimenticios a = new ProductosAlimenticios(datos[1], int.Parse(datos[2]), double.Parse(datos[3]), datos[4], int.Parse(datos[5]), int.Parse(datos[6]), int.Parse(datos[7]));
+                            //"Alimento|{Nombre}|{Unidades}|{PrecioUnitario}|{Descripcion}|{Calorias}|{Grasa}|{Azucar}
                             stockProductos.Add(a);
                         }
-                        else if (datos[1] == "ProductoElectronico") {
+                        else if (datos[0] == "ProductoElectronico") {
                             MaterialE materialE = new MaterialE();
                             switch (datos[5]) {
                                 case "Aluminio":
@@ -125,7 +132,7 @@ namespace MaquinaVendingCosmic {
                                     break;
                             }
 
-                            ProductosElectronicos productoE = new ProductosElectronicos(int.Parse(datos[0]), datos[2], int.Parse(datos[3]), double.Parse(datos[4]), datos[5], materialE, bool.Parse(datos[7]), bool.Parse(datos[8]));
+                            ProductosElectronicos productoE = new ProductosElectronicos(datos[1], int.Parse(datos[2]), double.Parse(datos[3]), datos[4], materialE, bool.Parse(datos[6]), bool.Parse(datos[8]));
                             stockProductos.Add(productoE);
 
                         }
@@ -149,7 +156,7 @@ namespace MaquinaVendingCosmic {
                                   
                             }
 
-                            MaterialesPreciosos materialP = new MaterialesPreciosos(int.Parse(datos[0]), datos[2], int.Parse(datos[3]), double.Parse(datos[4]), datos[5], int.Parse(datos[6]), material);
+                            MaterialesPreciosos materialP = new MaterialesPreciosos(datos[2], int.Parse(datos[3]), double.Parse(datos[4]), datos[5], int.Parse(datos[6]), material);
                             stockProductos.Add(materialP);
                         }
                     }

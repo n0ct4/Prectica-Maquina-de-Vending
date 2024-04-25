@@ -30,16 +30,12 @@ namespace MaquinaVendingCosmic {
 
                 Console.Clear();
 
-                Console.WriteLine("Buenos dias que desea comprar: ");
+                Console.WriteLine("------------------------------------");
+                Console.WriteLine(" - Buenos días! - ");
+                Console.WriteLine(" - ¿Qué deseas comprar? - ");
+                Console.WriteLine("------------------------------------");
 
                 //Console.WriteLine("Alimentos");
-                ListarAlimentos();
-                Console.WriteLine("Productos Electronicos");
-                //ListarProductosE();
-                Console.WriteLine("Materiales preciosos");
-                //ListaProductosMP();
-
-                Console.WriteLine("Alimentos");
                 ListarAlimentos();
                 Console.WriteLine("Productos Electronicos");
                 //ListarProductosE();
