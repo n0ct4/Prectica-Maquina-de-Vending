@@ -14,10 +14,9 @@ namespace MaquinaVendingCosmic {
         public int Peso { get; set; }
         public Material Material { get; set; }
 
-        public MaterialesPreciosos(double precioUnitario) : base(precioUnitario) { }
-        public MaterialesPreciosos(int id) : base(id) { }
+        public MaterialesPreciosos() { }
 
-        public MaterialesPreciosos(int id, string nombre, int unidades, double precioUnitario, string descripcion, int peso, Material material)
+        public MaterialesPreciosos(string nombre, int unidades, double precioUnitario, string descripcion, int peso, Material material)
            : base(nombre, unidades, precioUnitario, descripcion) {
             Peso = peso;
             Material = material;
@@ -59,7 +58,7 @@ namespace MaquinaVendingCosmic {
             }
         }
         public override string ToString() {
-            return $"{Id}|MaterialPrecioso|{Nombre}|{Unidades}|{PrecioUnitario}|{Descripcion}|{Peso}|{Material}";
+            return $"MaterialPrecioso|{Nombre}|{Unidades}|{PrecioUnitario}|{Descripcion}|{Peso}|{Material}";
 
         }
 
