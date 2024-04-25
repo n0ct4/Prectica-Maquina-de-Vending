@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MaquinaVendingCosmic {
-    internal  class Producto {
+    internal abstract class Producto {
         public int Id { get; private set; }
         public string Nombre { get; set; }
         public int Unidades { get; set; }
@@ -42,5 +42,6 @@ namespace MaquinaVendingCosmic {
             Console.Write("Descripcion: ");
             Descripcion = Console.ReadLine();
         }
+        public abstract void ToFile();
     }
 }

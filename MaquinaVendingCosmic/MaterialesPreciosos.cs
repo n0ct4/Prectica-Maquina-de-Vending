@@ -1,9 +1,11 @@
 ﻿using MaquinaVendingCosmic;
 using System;
+using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Security.Cryptography;
 
 namespace MaquinaVendingCosmic {
     public enum Material { Oro, Plata, Hierro, Diamante }
@@ -55,7 +57,16 @@ namespace MaquinaVendingCosmic {
                     Material = Material.Diamante;
                     break;
             }
+        }
+        public override string ToString() {
+            return $"{Id}|MaterialPrecioso|{Nombre}|{Unidades}|{PrecioUnitario}|{Descripcion}|{Peso}|{Material}";
 
+        }
+
+        public override void ToFile() {
+            using (StreamWriter sw = new StreamWriter("MaterialPreciosos.txt", true)) {
+                sw.WriteLine(ToString());
+            }
         }
     }
 }

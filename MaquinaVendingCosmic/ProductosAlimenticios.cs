@@ -1,6 +1,7 @@
 ﻿using MaquinaVendingCosmic;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -10,7 +11,7 @@ namespace MaquinaVendingCosmic {
         public int Calorias { get; set; }
         public int Grasa { get; set; }
         public int Azucar { get; set; }
-        public ProductosAlimenticios(double precioUnitario) : base(precioUnitario) { }
+        //public ProductosAlimenticios(double precioUnitario) : base(precioUnitario) { }
         public ProductosAlimenticios(int id) : base(id) { }
         public ProductosAlimenticios(int id, string nombre, int unidades, double precioUnitario, string descripcion, int calorias, int grasa, int azucar)
             : base(nombre, unidades, precioUnitario, descripcion) {
@@ -29,6 +30,16 @@ namespace MaquinaVendingCosmic {
             Grasa = int.Parse(Console.ReadLine());
             Console.Write("Azucar: ");
             Azucar = int.Parse(Console.ReadLine());
+        }
+
+        public override string ToString() {
+            return $"{Id}|Alimento|{Nombre}|{Unidades}|{PrecioUnitario}|{Descripcion}|{Calorias}|{Grasa}|{Azucar}";
+        }
+
+        public override void ToFile() {
+            using (StreamWriter sw = new StreamWriter("ProductosAlimenticios.txt", true)) {
+                sw.WriteLine(ToString());
+            }
         }
     }
 }
