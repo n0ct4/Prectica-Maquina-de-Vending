@@ -86,10 +86,7 @@ namespace MaquinaVendingCosmic {
                     foreach (Producto c in stockProductos) {
                         if (c is Producto) {
 
-                            Console.WriteLine($"{c.Id} - {c.Nombre}\t\nPrecio: {c.PrecioUnitario}");
-
-                            Console.WriteLine($"{c.Id} --- {c.Nombre}");
-
+                            Console.WriteLine($"({c.Id}) - Producto: {c.Nombre}\t\nPrecio: {c.PrecioUnitario}\n");
 
                         }
                     }
