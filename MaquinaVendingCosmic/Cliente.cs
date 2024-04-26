@@ -4,18 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-<<<<<<< HEAD
+
 namespace MaquinaVendingCosmic
 {
     internal class Cliente
     {
-        public static List<Producto> stockProductos;
-=======
-namespace MaquinaVendingCosmic {
-    internal class Cliente {
-
+       
         //public static List<Producto> stockProductos = new List<Producto>();
->>>>>>> 987c96ae56794df99ae22fc7c1cd4a0632b74e75
         public static List<int> carrito = new List<int>();
 
         public List<Producto> stockProductos;
