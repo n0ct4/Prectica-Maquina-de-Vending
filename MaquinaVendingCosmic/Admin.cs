@@ -42,18 +42,21 @@ namespace MaquinaVendingCosmic {
                         //int c = int.Parse(Console.ReadLine());
                         //Producto w = BuscarProducto(c);
                         //EliminarProducto(w);
-                        
 
                         /*int id = int.Parse(Console.ReadLine()); //da error al momento de introducir un numero
                         Producto p = BuscarProducto(id);
                         EliminarProducto(p);        
                         */
-                                              
 
-                       
+                        Console.WriteLine("--- PRODUCTOS ---");
+                        ListarProductos();
                         
-
+                        Console.Write("ID del contenido a eliminar: ");
+                        int id_contenido = int.Parse(Console.ReadLine());
+                        Producto productoTemp = BuscarProducto(id_contenido);
+                        EliminarProducto(productoTemp);
                         break;
+
 
 
                     case 3://listar
@@ -131,8 +134,28 @@ namespace MaquinaVendingCosmic {
                   }
               }
               Console.ReadKey();
+          }
+        }
+
+        private Producto BuscarProducto(int id) {
+            Producto productoTemp = null;
+            foreach (Producto p in stockProductos) {
+                if (p.Id == id) {
+                    productoTemp = p;
+                }
             }
-    }
+            return productoTemp;
+        }
+
+        private void EliminarProducto(Producto producto) {
+            if (producto != null) {
+                stockProductos.Remove(producto);
+                Console.WriteLine("Producto eliminado");
+            }
+            else {
+                Console.WriteLine("No se ha encontrado ningun prodcuto con el ID introducido.");
+            }
+        }
 
         /*public void EliminarProducto(Producto c)
         { 

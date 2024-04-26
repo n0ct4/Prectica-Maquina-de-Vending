@@ -54,8 +54,9 @@ namespace MaquinaVendingCosmic {
                         break;
                     case 2:
                         // Menu id producto y mostrar info
-                        Admin d = new Admin();
-                        d.ListarProductos();    
+                        // Crea cliente para llamar a la funcion Listar y poder ver los productos
+                        Cliente c2 = new Cliente(stockProductos);
+                        c2.ListarAlimentos();
                         
                         break;
                     case 3:

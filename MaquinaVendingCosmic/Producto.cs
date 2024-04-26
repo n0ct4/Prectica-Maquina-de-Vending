@@ -7,7 +7,8 @@ using System.Threading.Tasks;
 
 namespace MaquinaVendingCosmic {
     internal abstract class Producto {
-        private static int ultimoId = 0;
+
+        public static int ultimoId = 0;
 
         public int Id { get; private set; }
         public string Nombre { get; set; }
