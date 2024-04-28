@@ -133,13 +133,13 @@ namespace MaquinaVendingCosmic {
                                     break;
                             }
 
-                            ProductosElectronicos productoE = new ProductosElectronicos(datos[1], int.Parse(datos[2]), double.Parse(datos[3]), datos[4], materialE, bool.Parse(datos[6]), bool.Parse(datos[8]));
+                            ProductosElectronicos productoE = new ProductosElectronicos(datos[1], int.Parse(datos[2]), double.Parse(datos[3]), datos[4], materialE, bool.Parse(datos[6]), bool.Parse(datos[7]));
                             stockProductos.Add(productoE);
 
                         }
                         else {
                             Material material = new Material();
-                            switch (datos[7]) {
+                            switch (datos[6]) {
                                 case "Oro":
                                     material = Material.Oro;
                                     break;
@@ -157,7 +157,7 @@ namespace MaquinaVendingCosmic {
                                   
                             }
 
-                            MaterialesPreciosos materialP = new MaterialesPreciosos(datos[2], int.Parse(datos[3]), double.Parse(datos[4]), datos[5], int.Parse(datos[6]), material);
+                            MaterialesPreciosos materialP = new MaterialesPreciosos(datos[1], int.Parse(datos[2]), double.Parse(datos[3]), datos[4], int.Parse(datos[5]), material);
                             stockProductos.Add(materialP);
                         }
                     }

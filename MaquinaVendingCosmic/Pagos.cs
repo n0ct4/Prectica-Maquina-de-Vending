@@ -26,19 +26,22 @@ namespace MaquinaVendingCosmic
             NumeroTarjeta = numeroTarjeta;
             FechaCaducidad = fechaCaducidad;
         }
-
+        List<Producto> stockProductos;
         public void Menu()
         {
             int opcion = 0;
+            List<Producto> carrito = new List<Producto>();
+            
             do
             {
                 //Falta declarar unicamente el carrito los metodo de pago y vueltas ya estan
                 Cliente c = new Cliente();
-
+                foreach (Producto p in carrito)
+                {
+                    Precio = Precio + p.PrecioUnitario;
+                }
                 Console.Clear();
-                Precio = 10.00;
                 Console.Write($"El precio a pagar es: {Precio}");
-                // Precio = ;
                 Console.WriteLine("--- ¿Con qué quieres pagar? ---");
                 Console.WriteLine("1. Pagar con tarjeta");
                 Console.WriteLine("2. Pagar con efectivo");
@@ -48,11 +51,11 @@ namespace MaquinaVendingCosmic
                 switch (opcion)
                 {
                     case 1:
-                        PagarTarjeta();
+                        PagarTarjeta(carrito);
                         Console.WriteLine("Gracias Por su compra");
                         break;
                     case 2:
-                        PagarEfectivo();
+                        PagarEfectivo(carrito);
                         break;
                     case 3:
                         Console.WriteLine("Opción no valida");
@@ -62,7 +65,7 @@ namespace MaquinaVendingCosmic
                 Console.ReadKey();
             } while (opcion != 2);
         }
-        public void PagarTarjeta()
+        public void PagarTarjeta(List<Producto> carrito)
         {
             Console.WriteLine("Dime el numero de la tarjeta (16num): ");
             NumeroTarjeta = Console.ReadLine();
@@ -84,7 +87,8 @@ namespace MaquinaVendingCosmic
                 Console.WriteLine("cargando...");
                 Console.WriteLine("Tarjeta no válida. Por favor, verifica los datos e intenta nuevamente.");
             }
-
+            EliminarProducto(carrito);
+            carrito = null;
         }
         static bool ValidarTarjeta(string numeroTarjeta)
         {
@@ -106,11 +110,12 @@ namespace MaquinaVendingCosmic
             }
             return true;
         }
-        public void PagarEfectivo()
+        public void PagarEfectivo(List<Producto> carrito)
         {
             double dineroDebe = Precio;
             double llevaPagado = DineroIngresado;
 
+         
             do
             {
                 Console.Clear();
@@ -259,7 +264,7 @@ namespace MaquinaVendingCosmic
             Console.WriteLine($"Monedas de 2$: {moneda2}\n Monedas de 1$: {moneda1}\n Monedas de 0.50$: {moneda50} \n Monedas de 0.10$: {moneda01}");*/
 
         //      }
-        public void Vueltas(double montoAPagar, double montoIngresado)
+        public void Vueltas(double dineroDebe, double llevaPagado)
         {
             double vueltas;
             double moneda2 = 0;
@@ -267,14 +272,10 @@ namespace MaquinaVendingCosmic
             double moneda50 = 0;
             double moneda20 = 0;
             double moneda01 = 0;
-            double llevaPagado = 0;
-            double dineroDebe = 0;
-            
-            vueltas = Math.Round(llevaPagado - dineroDebe, 2);
             do
-            { 
+            {
                 // Calculamos las vueltas
-                vueltas = Math.Round(montoIngresado - montoAPagar, 2);
+                vueltas = Math.Round(llevaPagado - dineroDebe, 2);
                 // Definimos el valor de cada moneda
                 double[] monedas = { 2.0, 1.0, 0.50, 0.20, 0.10 };
                 // Recorremos el array de monedas para calcular la cantidad de cada una
@@ -307,6 +308,21 @@ namespace MaquinaVendingCosmic
             } while (vueltas != 0) ; //ni idea de porque no funciona
             Console.WriteLine("Muchas gracias por su compra");
             Console.WriteLine($"Monedas de 2$: {moneda2}\n Monedas de 1$: {moneda1}\n Monedas de 0.50$: {moneda50} \n Monedas de 0.10$: {moneda01}");
+        }
+
+        public static void EliminarProducto(List<Producto> carrito)
+        {
+            foreach(Producto producto in carrito)
+            {
+                if(producto.Unidades < 1)
+                {
+                    producto.Unidades--;
+                }
+                if (producto.Unidades == 1)
+                {
+                    stockProductos.Remove(producto);    
+                }  
+            }
         }
     }
 }

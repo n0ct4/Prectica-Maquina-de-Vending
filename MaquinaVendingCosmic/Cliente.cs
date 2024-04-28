@@ -11,7 +11,7 @@ namespace MaquinaVendingCosmic
     {
        
         //public static List<Producto> stockProductos = new List<Producto>();
-        public static List<int> carrito = new List<int>();
+        List<Producto> carrito = new List<Producto>();
 
         public List<Producto> stockProductos;
 
