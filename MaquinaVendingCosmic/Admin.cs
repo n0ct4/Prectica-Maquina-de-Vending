@@ -90,6 +90,7 @@ namespace MaquinaVendingCosmic {
                 Console.WriteLine("2. Productos electronicos");
                 Console.WriteLine("3. Materiales preciosos");
                 Console.WriteLine("4. Salir");
+
                 opcion = int.Parse(Console.ReadLine());
                 switch (opcion) {
                     case 1:

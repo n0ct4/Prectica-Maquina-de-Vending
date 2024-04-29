@@ -46,33 +46,41 @@ namespace MaquinaVendingCosmic {
 
                 Console.WriteLine("\t4. Salir");
                 Console.Write("\nSeleccione una opción: ");
-                opcion = int.Parse(Console.ReadLine());
-                switch (opcion) {
-                    case 1:
-                        Cliente c = new Cliente(stockProductos);//parametro stockproductos
-                        c.Menu();
-                        break;
-                    case 2:
-                        // Menu id producto y mostrar info
-                        // Crea cliente para llamar a la funcion Listar y poder ver los productos
-                        Cliente c2 = new Cliente(stockProductos);
-                        c2.ListarAlimentos();
-                        
-                        break;
-                    case 3:
-                        // Menu admin
-                        //Admin admin = new Admin("admin", "admin");
-                        LoginAdmin();
-                        break;
-                    case 4:
-                        Console.WriteLine("Saliendo...");
-                        break;
-                    default:
-                        Console.WriteLine("Opción no válida.");
-                        break;
+                try {
+                    opcion = int.Parse(Console.ReadLine());
+                    switch (opcion) {
+                        case 1:
+                            Cliente c = new Cliente(stockProductos);//parametro stockproductos
+                            c.Menu();
+                            break;
+                        case 2:
+                            // Menu id producto y mostrar info
+                            // Crea cliente para llamar a la funcion Listar y poder ver los productos
+                            Cliente c2 = new Cliente(stockProductos);
+                            c2.ListarAlimentos();
+
+                            break;
+                        case 3:
+                            // Menu admin
+                            //Admin admin = new Admin("admin", "admin");
+                            LoginAdmin();
+                            break;
+                        case 4:
+                            Console.WriteLine("Saliendo...");
+                            break;
+                        default:
+                            Console.WriteLine("Opción no válida.");
+                            break;
+                    }
+                    Console.WriteLine("Presiona una tecla para continuar...");
+                    Console.ReadKey();
                 }
-                Console.WriteLine("Presiona una tecla para continuar...");
-                Console.ReadKey();
+                catch (FormatException e) {
+                    Console.WriteLine("Error: Opción inválida. Por favor, ingrese un número válido.");
+                }
+                catch (Exception ex) {
+                    Console.WriteLine("Error: " + ex.Message);
+                }
             } while (opcion != 4);
         }
 
