@@ -42,7 +42,10 @@ namespace MaquinaVendingCosmic
                 Console.WriteLine("------------------------------------");
 
                 Console.WriteLine("Alimentos");
-                ListarProductos("Alimentos", stockProductos.Where(a => a.tipo == TipoProducto.Alimentos).ToList());
+                /* Lista.Where(a => a.tipo/nombre/id == " " ).ToList()
+                lo que hace es buscar con la variable que has metido, el nombre, el tipo o el id, de lo que quieras buscar
+                para luego hacer una lista únicamente con lo que has seleccionado*/
+                ListarProductos("Alimentos", stockProductos.Where(a => a.tipo == TipoProducto.Alimentos).ToList()); 
                 Console.WriteLine("Productos Electronicos");
                 ListarProductos("Productos Electronicos", stockProductos.Where(a => a.tipo == TipoProducto.ProductosElectronicos).ToList());
                 Console.WriteLine("Materiales preciosos");
@@ -62,14 +65,12 @@ namespace MaquinaVendingCosmic
                     {
                         Pagos p = new Pagos();
                         p.Menu(carrito, stockProductos);
-                        //el salir no funciona pero una vez se haga carrito y pagar 
-                        //le metemos un if y si selecciona dos que le envia a pagar y no ha salir
                     }
                     Console.ReadKey();
                 }
             } while (opcion != 15);
         }
-
+        // Lista general, que luego la divides en los productos de cada tipo
         public void ListarProductos(string tipo, List<Producto> productos)
         {
             Console.WriteLine($"  --- Listado de productos {tipo} ---  ");
@@ -89,9 +90,7 @@ namespace MaquinaVendingCosmic
                 }
                 Console.ReadKey();
             }
-
         }
-
 
         public void AgregarAlCarrito(int id)
         {
