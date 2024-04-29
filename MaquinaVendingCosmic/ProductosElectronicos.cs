@@ -16,7 +16,7 @@ namespace MaquinaVendingCosmic {
 
         public ProductosElectronicos() { }
         public ProductosElectronicos(string nombre, int unidades, double precioUnitario, string descripcion, MaterialE materialE, bool pilas, bool precargado)
-            : base(nombre, unidades, precioUnitario, descripcion) {
+            : base(nombre, unidades, precioUnitario, descripcion, TipoProducto.ProductosElectronicos) {
             MaterialE = materialE;
             Pilas = pilas;
             Precargado = precargado;
@@ -48,6 +48,7 @@ namespace MaquinaVendingCosmic {
                     MaterialE = MaterialE.Titanio;
                     break;
             }
+            Console.WriteLine("Indique mediante (true) o (false) la respuesta a los siguientes campos por favor.");
             Console.Write("Tiene pilas?: ");
             Pilas = bool.Parse(Console.ReadLine());
             Console.Write("Esta precargado el articulo?: ");
