@@ -1,42 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace MaquinaVendingCosmic {
-    internal class Program {
+namespace MaquinaVendingCosmic
+{
+    internal class Program
+    {
 
         static List<Producto> stockProductos;
         static List<Admin> usuarioAdmin;
 
-        static void Main(string[] args) {
+        static void Main(string[] args)
+        {
 
             stockProductos = new List<Producto>();
-            usuarioAdmin = new List<Admin>();
-
-
-            //ProductosAlimenticios a = new ProductosAlimenticios(stockProductos.Count + 1, "patata", 1, 20, "rica", 100, 10, 1);
-            //stockProductos.Add(a);
-
-
+            usuarioAdmin = new List<Admin>();            
             Admin admin = new Admin("admin", "admin", stockProductos);
-
-           /* ProductosAlimenticios p = new ProductosAlimenticios(0, "patata", 1, 150, "rica", 12, 10, 0);
-            stockProductos.Add(p); */
-            //ProductosAlimenticios a = new ProductosAlimenticios(stockProductos.Count + 1, "patata", 1, 20, "sabrosa", 2, 0, 20);
-            //stockProductos.Add(a);
             
-            //Admin admin = new Admin("admin", "admin");
-
             usuarioAdmin.Add(admin);
 
             int opcion = 0;
             CargarContenidosDeArchivo();
 
-            do {
+            do
+            {
                 Console.Clear();
                 Console.WriteLine("------------------------------------");
                 Console.WriteLine(" - Máquina Expendedora Cósmica - ");
@@ -47,7 +34,8 @@ namespace MaquinaVendingCosmic {
                 Console.WriteLine("\t4. Salir");
                 Console.Write("\nSeleccione una opción: ");
                 opcion = int.Parse(Console.ReadLine());
-                switch (opcion) {
+                switch (opcion)
+                {
                     case 1:
                         Cliente c = new Cliente(stockProductos);//parametro stockproductos
                         c.Menu();
@@ -56,8 +44,8 @@ namespace MaquinaVendingCosmic {
                         // Menu id producto y mostrar info
                         // Crea cliente para llamar a la funcion Listar y poder ver los productos
                         Cliente c2 = new Cliente(stockProductos);
-                        c2.ListarAlimentos();
-                        
+                        c2.ListarProductos("Alimentos", stockProductos);
+
                         break;
                     case 3:
                         // Menu admin
@@ -76,7 +64,8 @@ namespace MaquinaVendingCosmic {
             } while (opcion != 4);
         }
 
-        public static void LoginAdmin() {
+        public static void LoginAdmin()
+        {
             Console.Clear();
             Console.WriteLine("------------------------------------");
             Console.WriteLine(" - Login de Admin - ");
@@ -87,35 +76,45 @@ namespace MaquinaVendingCosmic {
             string password = Console.ReadLine();
 
             bool usuarioEncontrado = false;
-            foreach(Admin a in usuarioAdmin) {
-                if (a.Login(nombre, password)) {
+            foreach (Admin a in usuarioAdmin)
+            {
+                if (a.Login(nombre, password))
+                {
                     usuarioEncontrado = true;
                     a.Menus();
                 }
-                if (!usuarioEncontrado) {
+                if (!usuarioEncontrado)
+                {
                     Console.WriteLine("Usuario o contraseña incorrectos");
                 }
             }
         }
 
 
-        private static bool CargarContenidosDeArchivo() {
+        private static bool CargarContenidosDeArchivo()
+        {
             bool productosCargados = false;
-            try {
-                if (File.Exists("productos.txt")) {
+            try
+            {
+                if (File.Exists("productos.txt"))
+                {
                     StreamReader sr = new StreamReader("productos.txt");
                     string linea;
-                    while ((linea = sr.ReadLine()) != null) {
+                    while ((linea = sr.ReadLine()) != null)
+                    {
                         productosCargados = true;
                         string[] datos = linea.Split('|');
-                        if (datos[0] == "Alimento") {
+                        if (datos[0] == "Alimento")
+                        {
                             ProductosAlimenticios a = new ProductosAlimenticios(datos[1], int.Parse(datos[2]), double.Parse(datos[3]), datos[4], int.Parse(datos[5]), int.Parse(datos[6]), int.Parse(datos[7]));
-                            //"Alimento|{Nombre}|{Unidades}|{PrecioUnitario}|{Descripcion}|{Calorias}|{Grasa}|{Azucar}
+                            
                             stockProductos.Add(a);
                         }
-                        else if (datos[0] == "ProductoElectronico") {
+                        else if (datos[0] == "ProductoElectronico")
+                        {
                             MaterialE materialE = new MaterialE();
-                            switch (datos[5]) {
+                            switch (datos[5])
+                            {
                                 case "Aluminio":
                                     materialE = MaterialE.Aluminio;
                                     break;
@@ -137,9 +136,11 @@ namespace MaquinaVendingCosmic {
                             stockProductos.Add(productoE);
 
                         }
-                        else {
+                        else
+                        {
                             Material material = new Material();
-                            switch (datos[6]) {
+                            switch (datos[6])
+                            {
                                 case "Oro":
                                     material = Material.Oro;
                                     break;
@@ -154,7 +155,7 @@ namespace MaquinaVendingCosmic {
                                     break;
                                 default:
                                     break;
-                                  
+
                             }
 
                             MaterialesPreciosos materialP = new MaterialesPreciosos(datos[1], int.Parse(datos[2]), double.Parse(datos[3]), datos[4], int.Parse(datos[5]), material);
@@ -163,14 +164,17 @@ namespace MaquinaVendingCosmic {
                     }
                     sr.Close();
                 }
-                else {
+                else
+                {
                     File.Create("productos.txt").Close();
                 }
             }
-            catch (FileNotFoundException ex) {
+            catch (FileNotFoundException ex)
+            {
                 Console.WriteLine("No se encuentra el archivo de productos: " + ex.Message);
             }
-            catch (IOException ex) {
+            catch (IOException ex)
+            {
                 Console.WriteLine("Error de E/S: " + ex.Message);
             }
             return productosCargados;

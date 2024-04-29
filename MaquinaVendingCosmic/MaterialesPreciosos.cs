@@ -7,9 +7,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Security.Cryptography;
 
-namespace MaquinaVendingCosmic {
+namespace MaquinaVendingCosmic
+{
     public enum Material { Oro, Plata, Hierro, Diamante }
-    internal class MaterialesPreciosos : Producto {
+    internal class MaterialesPreciosos : Producto
+    {
 
         public int Peso { get; set; }
         public Material Material { get; set; }
@@ -17,11 +19,13 @@ namespace MaquinaVendingCosmic {
         public MaterialesPreciosos() { }
 
         public MaterialesPreciosos(string nombre, int unidades, double precioUnitario, string descripcion, int peso, Material material)
-           : base(nombre, unidades, precioUnitario, descripcion) {
+           : base(nombre, unidades, precioUnitario, descripcion, TipoProducto.MaterialesPreciosos)
+        {
             Peso = peso;
             Material = material;
         }
-        public override string MostrarDetalles() {
+        public override string MostrarDetalles()
+        {
             return base.MostrarDetalles() + $"\t\nMaterial: {Material} - Peso: {Peso}";
         }
 
@@ -30,7 +34,8 @@ namespace MaquinaVendingCosmic {
          2. Hacer switch case para elegir el enum 
          */
 
-        public override void SolicitarDetalles() {
+        public override void SolicitarDetalles()
+        {
             base.SolicitarDetalles();
             Console.Write("Peso: ");
             Peso = int.Parse(Console.ReadLine());
@@ -42,7 +47,8 @@ namespace MaquinaVendingCosmic {
             Console.WriteLine("4. Diamante");
 
             int opcionMaterial = int.Parse(Console.ReadLine());
-            switch (opcionMaterial) {
+            switch (opcionMaterial)
+            {
                 case 1:
                     Material = Material.Oro;
                     break;
@@ -57,13 +63,16 @@ namespace MaquinaVendingCosmic {
                     break;
             }
         }
-        public override string ToString() {
+        public override string ToString()
+        {
             return $"MaterialPrecioso|{Nombre}|{Unidades}|{PrecioUnitario}|{Descripcion}|{Peso}|{Material}";
 
         }
 
-        public override void ToFile() {
-            using (StreamWriter sw = new StreamWriter("MaterialPreciosos.txt", true)) {
+        public override void ToFile()
+        {
+            using (StreamWriter sw = new StreamWriter("MaterialPreciosos.txt", true))
+            {
                 sw.WriteLine(ToString());
             }
         }

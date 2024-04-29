@@ -9,7 +9,7 @@ namespace MaquinaVendingCosmic
 {
     internal class Cliente
     {
-       
+
         //public static List<Producto> stockProductos = new List<Producto>();
         List<Producto> carrito = new List<Producto>();
 
@@ -17,7 +17,8 @@ namespace MaquinaVendingCosmic
 
         public Cliente() { }
 
-        public Cliente(List<Producto> listaProductos) {
+        public Cliente(List<Producto> listaProductos)
+        {
             stockProductos = listaProductos;
         }
 
@@ -26,10 +27,12 @@ namespace MaquinaVendingCosmic
         //{
         //stockProductos = _stockProductos;
         //}
-        public virtual void Menu() {
+        public virtual void Menu()
+        {
             int salir;
             int opcion = 0;
-            do {
+            do
+            {
 
                 Console.Clear();
 
@@ -38,171 +41,89 @@ namespace MaquinaVendingCosmic
                 Console.WriteLine(" - ¿Qué deseas comprar? - ");
                 Console.WriteLine("------------------------------------");
 
-                //Console.WriteLine("Alimentos");
-                ListarAlimentos();
+                Console.WriteLine("Alimentos");
+                ListarProductos("Alimentos", stockProductos.Where(a => a.tipo == TipoProducto.Alimentos).ToList());
                 Console.WriteLine("Productos Electronicos");
-                //ListarProductosE();
+                ListarProductos("Productos Electronicos", stockProductos.Where(a => a.tipo == TipoProducto.ProductosElectronicos).ToList());
                 Console.WriteLine("Materiales preciosos");
-                //ListaProductosMP();
+                ListarProductos("Materiales preciosos", stockProductos.Where(a => a.tipo == TipoProducto.MaterialesPreciosos).ToList());
 
                 Console.WriteLine(" ");
                 Console.WriteLine("Elija el producto deseado: ");
                 Console.WriteLine("De al numero 15 para salir: ");
                 opcion = int.Parse(Console.ReadLine());
-                if (opcion != 15) {
-                    //AddCarrito(opcion);
+                if (opcion != 15)
+                {
+                    AgregarAlCarrito(opcion);
                     Console.WriteLine("El producto a sido añadido al carrito");
                     Console.WriteLine("¿Quiere seguir comprando? (1.Si 2.No)");
                     salir = int.Parse(Console.ReadLine());
-
-                    if (salir == 2) {
-
-
-                        if (salir == 2) {
-
-
-                            Pagos p = new Pagos();
-                            p.Menu();
-                        }
+                    if (salir == 2)
+                    {
+                        Pagos p = new Pagos();
+                        p.Menu(carrito, stockProductos);
                         //el salir no funciona pero una vez se haga carrito y pagar 
                         //le metemos un if y si selecciona dos que le envia a pagar y no ha salir
                     }
-                    else {
-                        salir = 2;
-                    }
-
-
                     Console.ReadKey();
-                    //ADDCarrito
-
                 }
             } while (opcion != 15);
         }
 
-            public void ListarAlimentos() {
-                Console.WriteLine("  --- Listado de productos ---  ");
-                Console.WriteLine();
-                if (stockProductos == null) {
-                    Console.WriteLine("No hay ningún producto");
-                }
-                else {
-                    foreach (Producto c in stockProductos) {
-                        if (c is Producto) {
-
-                            Console.WriteLine($"({c.Id}) - Producto: {c.Nombre}\t\nPrecio: {c.PrecioUnitario}\n");
-
-                        }
-                    }
-                    Console.ReadKey();
-                }
-        
+        public void ListarProductos(string tipo, List<Producto> productos)
+        {
+            Console.WriteLine($"  --- Listado de productos {tipo} ---  ");
+            Console.WriteLine();
+            if (stockProductos == null)
+            {
+                Console.WriteLine("No hay ningún producto");
             }
-            /*
-
-            public void AddCarrito(int idElegido) {
-
-
-                public void ListarProductosE() {
-                    Console.WriteLine("  --- Listado de productos ---  ");
-                    Console.WriteLine();
-                    if (stockProductos == null) {
-                        Console.WriteLine("No hay ningún producto");
-                    }
-                    else {
-                        foreach (Producto c in stockProductos) {
-                            if (c is Producto) {
-                                Console.WriteLine($"{c.Id} --- {c.Nombre}");
-                            }
-                        }
-                        Console.ReadKey();
+            else
+            {
+                foreach (Producto c in productos)
+                {
+                    if (c is Producto)
+                    {
+                        Console.WriteLine($"({c.Id}) - Producto: {c.Nombre}\t\nPrecio: {c.PrecioUnitario}\n Unidades: {c.Unidades}\n");
                     }
                 }
-                public void ListaProductosMP() {
-                    Console.WriteLine("  --- Listado de productos ---  ");
-                    Console.WriteLine();
-                    if (stockProductos == null) {
-                        Console.WriteLine("No hay ningún producto");
-                    }
-                    else {
-                        foreach (Producto c in stockProductos) {
-                            if (c is Producto) {
-                                Console.WriteLine($"{c.Id} --- {c.Nombre}");
-                            }
-                        }
-                        Console.ReadKey();
-                    }
-                }
+                Console.ReadKey();
+            }
 
-
-
-                public void AddCarrito(int idElegido) {
-
-                    int carritoMaximo = 12;
-                    if (carritoMaximo >= carrito.Count) {
-                        carrito.Add(idElegido);
-                        Console.WriteLine($"IDSSSS ----->>>>>> {idElegido}");
-                    }
-                    else {
-                        { Console.WriteLine("No hay mas productos bro"); }
-                    }
-                } 
-            } 
         }
-        */
 
 
+        public void AgregarAlCarrito(int id)
+        {
+            Producto p = BuscarProducto(id);
+
+            if (p != null)
+            {
+                carrito.Add(p);
+                Console.WriteLine($"Producto '{p.Nombre}' agregado al carrito.");
+            }
+            else
+            {
+                Console.WriteLine($"No se encontró ningún producto con el ID {id}.");
+            }
+        }
+        public Producto BuscarProducto(int id)
+        {
+            Producto productoTemp = null;
+            foreach (Producto p in stockProductos)
+            {
+                if (p.Id == id)
+                {
+                    productoTemp = p;
+                }
+            }
+            return productoTemp;
+        }
         public virtual void Salir() { }
 
-    } 
+    }
 }
-    
 
-
-
-/*public void ListarProductosE()
-
- {
-     Console.WriteLine("  --- Listado de productos ---  ");
-     Console.WriteLine();
-     if (stockProductos == null)
-     {
-         Console.WriteLine("No hay ningún producto");
-     }
-     else
-     {
-         foreach (Producto c in stockProductos)
-         {
-             if (c is Producto)
-             {
-                 Console.WriteLine($"{c.Id} --- {c.Nombre}");
-             }
-         }
-         Console.ReadKey();
-     }
- }
- public void ListaProductosMP()
- {
-     Console.WriteLine("  --- Listado de productos ---  ");
-     Console.WriteLine();
-     if (stockProductos == null)
-     {
-         Console.WriteLine("No hay ningún producto");
-     }
-     else
-     {
-         foreach (Producto c in stockProductos)
-         {
-             if (c is Producto)
-             {
-                 Console.WriteLine($"{c.Id} --- {c.Nombre}");
-             }
-         }
-         Console.ReadKey();
-     }
- }
-
-
-*/
 
 
 

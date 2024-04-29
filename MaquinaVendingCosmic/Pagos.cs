@@ -14,6 +14,7 @@ namespace MaquinaVendingCosmic
         public string Cvv { get; set; }
         public string NumeroTarjeta { get; set; }
         public string FechaCaducidad { get; set; }
+        public double totalPrecio { get; set; }
 
         public Pagos() { }
 
@@ -26,22 +27,18 @@ namespace MaquinaVendingCosmic
             NumeroTarjeta = numeroTarjeta;
             FechaCaducidad = fechaCaducidad;
         }
-        List<Producto> stockProductos;
-        public void Menu()
+        public static List<Producto> stockProductos;
+        public void Menu(List<Producto> carrito,List<Producto> stockProductos)
         {
             int opcion = 0;
-            List<Producto> carrito = new List<Producto>();
-            
             do
             {
-                //Falta declarar unicamente el carrito los metodo de pago y vueltas ya estan
-                Cliente c = new Cliente();
-                foreach (Producto p in carrito)
+                foreach (var producto in carrito)
                 {
-                    Precio = Precio + p.PrecioUnitario;
+                    totalPrecio += producto.PrecioUnitario;
                 }
                 Console.Clear();
-                Console.Write($"El precio a pagar es: {Precio}");
+                Console.Write($"El precio a pagar es: {totalPrecio}");
                 Console.WriteLine("--- ¿Con qué quieres pagar? ---");
                 Console.WriteLine("1. Pagar con tarjeta");
                 Console.WriteLine("2. Pagar con efectivo");
@@ -51,11 +48,11 @@ namespace MaquinaVendingCosmic
                 switch (opcion)
                 {
                     case 1:
-                        PagarTarjeta(carrito);
+                        stockProductos = PagarTarjeta(carrito, stockProductos);
                         Console.WriteLine("Gracias Por su compra");
                         break;
                     case 2:
-                        PagarEfectivo(carrito);
+                        stockProductos = PagarEfectivo(carrito, stockProductos);
                         break;
                     case 3:
                         Console.WriteLine("Opción no valida");
@@ -65,7 +62,7 @@ namespace MaquinaVendingCosmic
                 Console.ReadKey();
             } while (opcion != 2);
         }
-        public void PagarTarjeta(List<Producto> carrito)
+        public List<Producto> PagarTarjeta(List<Producto> carrito, List<Producto> stockproductos)
         {
             Console.WriteLine("Dime el numero de la tarjeta (16num): ");
             NumeroTarjeta = Console.ReadLine();
@@ -80,6 +77,7 @@ namespace MaquinaVendingCosmic
                 Console.WriteLine("--- Realizando el cobro ---");
 
                 Console.WriteLine("¡Pago exitoso!");
+                Console.WriteLine("Gracias por su compra, que tenga un buen día");
             }
             else
             {
@@ -87,8 +85,9 @@ namespace MaquinaVendingCosmic
                 Console.WriteLine("cargando...");
                 Console.WriteLine("Tarjeta no válida. Por favor, verifica los datos e intenta nuevamente.");
             }
-            EliminarProducto(carrito);
+            stockProductos = EliminarProductos(carrito, stockProductos);
             carrito = null;
+            return stockProductos;
         }
         static bool ValidarTarjeta(string numeroTarjeta)
         {
@@ -110,16 +109,14 @@ namespace MaquinaVendingCosmic
             }
             return true;
         }
-        public void PagarEfectivo(List<Producto> carrito)
+        public List<Producto> PagarEfectivo(List<Producto> carrito, List<Producto> stockProductos)
         {
-            double dineroDebe = Precio;
+            double dineroDebe = totalPrecio;
             double llevaPagado = DineroIngresado;
-
-         
             do
             {
                 Console.Clear();
-                Console.WriteLine($"Debes {Precio}$");
+                Console.WriteLine($"Debes {totalPrecio}$");
                 Console.WriteLine($"Has metido:{llevaPagado}");
                 Console.WriteLine("Indique como va a pagar?");
                 Console.WriteLine("Billetes");
@@ -163,166 +160,54 @@ namespace MaquinaVendingCosmic
             } while (dineroDebe > llevaPagado);
             if (dineroDebe == llevaPagado)
             {
-                Console.WriteLine("Gracias por su compra :) ");
+                Console.WriteLine("Gracias por su compra :), que tenga un buen día ");
             }
             else if (dineroDebe < llevaPagado)
             {
                 Console.Clear();
                 Console.WriteLine($"Pago {llevaPagado}");
                 Vueltas(dineroDebe, llevaPagado);
-                /*double moneda2 = 0;
-                double moneda1 = 0;
-                double moneda50 = 0;
-                double moneda01 = 0;
-                vueltas = llevaPagado - dineroDebe;
-                do
-                {
-                    int nmonedas2;
-                    int nmonedas1;  
-                    int nmonedas50;
-                    int nmonedas01;
-                    if (vueltas >= 2)
-                    { //poner numero de monedas a devolver Para tenerlo ya hecho
-                        
-                        moneda2 = +1;
-                        vueltas -= 2;
-                        
-                    }
-                    else if (vueltas < 2 && vueltas >= 1)
-                    {
-                        moneda1 = +1;
-                        vueltas -= 1;
-
-                    }
-                    else if (vueltas < 1 && vueltas >= 0.50)
-                    {
-                        moneda50 = +1;
-                        vueltas -= 0.50;
-
-                    }
-                    else
-                    {
-                        moneda01 = +1;
-                        vueltas -= 0.01;
-                    }
-                    
-                    
-                } while (vueltas != 0);
-                Console.WriteLine($"{moneda2}, {moneda1}, {moneda50} , {moneda01}"); */
-
-                /* vueltas = llevaPagado - dineroDebe;
-                 Console.WriteLine($"sus vueltas son: {vueltas}");
-                 Console.WriteLine("Muchas gracias por su compra");*/
-
-
             }
-
-        }
-        //   public void Vueltas(double dineroDebe, double llevaPagado)
-        //7  {
-        /*    double vueltas;
-            double moneda2 = 0;
-            double moneda1 = 0;
-            double moneda50 = 0;
-            double moneda01 = 0;
-            vueltas = Math.Round(llevaPagado - dineroDebe, 2);
-            do
-            {
-
-                if (vueltas >= 2)
-                { //poner numero de monedas a devolver Para tenerlo ya hecho
-
-                    moneda2 = 1 + moneda2;
-                    vueltas -= 2;
-                    Console.Write("0.4 ");
-
-                }
-                else if (vueltas < 2 && vueltas >= 1)
-                {
-                    moneda1 = 1 + moneda1;
-                    vueltas -= 1;
-                    Console.Write("0.3 ");
-                }
-                else if (vueltas < 1 && vueltas >= 0.50)
-                {
-                    moneda50 = 1 + moneda50;
-                    vueltas -= 0.50;
-                    Console.Write("0.2 ");
-
-                }
-                else if(vueltas < 0.50 && vueltas > 0)
-                {
-                    moneda01 = 1 + moneda01;
-                    vueltas -= 0.10;
-                    Console.Write("0.1 ");
-                }
-
-
-
-            } while (vueltas >= 0 ); //ni idea de porque no funciona
-            Console.WriteLine("Muchas gracias por su compra");
-            Console.WriteLine($"Monedas de 2$: {moneda2}\n Monedas de 1$: {moneda1}\n Monedas de 0.50$: {moneda50} \n Monedas de 0.10$: {moneda01}");*/
-
-        //      }
-        public void Vueltas(double dineroDebe, double llevaPagado)
-        {
-            double vueltas;
-            double moneda2 = 0;
-            double moneda1 = 0;
-            double moneda50 = 0;
-            double moneda20 = 0;
-            double moneda01 = 0;
-            do
-            {
-                // Calculamos las vueltas
-                vueltas = Math.Round(llevaPagado - dineroDebe, 2);
-                // Definimos el valor de cada moneda
-                double[] monedas = { 2.0, 1.0, 0.50, 0.20, 0.10 };
-                // Recorremos el array de monedas para calcular la cantidad de cada una
-                foreach (double moneda in monedas)
-                {
-                    int cantidad = (int)(vueltas / moneda);
-                    vueltas -= cantidad * moneda;
-                    if (cantidad > 0)
-                    {
-                        Console.WriteLine($"Se le han devuelto  {cantidad}  monedas de  {moneda} + euros.");
-                    }
-                    else if (vueltas < 1 && vueltas >= 0.50)
-                    {
-                        moneda50 = 1 + moneda50;
-                        vueltas -= 0.50;
-
-                    }
-                    else if (vueltas < 0.50 && vueltas >= 0.20)
-                    {
-                        moneda20 = 1 + moneda20;
-                        vueltas -= 0.20;
-                    }
-                    else if (vueltas < 0.20 && vueltas >= 0.10)
-                    {
-                        moneda01 = 1 + moneda01;
-                        vueltas -= 0.10;
-                    }
-                }
-
-            } while (vueltas != 0) ; //ni idea de porque no funciona
-            Console.WriteLine("Muchas gracias por su compra");
-            Console.WriteLine($"Monedas de 2$: {moneda2}\n Monedas de 1$: {moneda1}\n Monedas de 0.50$: {moneda50} \n Monedas de 0.10$: {moneda01}");
+            stockProductos = EliminarProductos(carrito, stockProductos);
+            carrito = null;
+            return stockProductos;
         }
 
-        public static void EliminarProducto(List<Producto> carrito)
+        public void Vueltas(double montoAPagar, double montoIngresado)
         {
-            foreach(Producto producto in carrito)
+            // Calculamos las vueltas
+            double vueltas = Math.Round(montoIngresado - montoAPagar, 2);
+
+            // Definimos el valor de cada moneda
+            double[] monedas = { 2.0, 1.0, 0.50, 0.20, 0.10 };
+
+            // Recorremos el array de monedas para calcular la cantidad de cada una
+            foreach (double moneda in monedas)
             {
-                if(producto.Unidades < 1)
+                int cantidad = (int)(vueltas / moneda);
+                vueltas -= cantidad * moneda;
+                if (cantidad > 0)
                 {
-                    producto.Unidades--;
+                    Console.WriteLine($"Se le han devuelto  {cantidad}  monedas de  {moneda} euros.");
+                    Console.WriteLine("Gracias por su compra, que tenga un buen día");
                 }
-                if (producto.Unidades == 1)
-                {
-                    stockProductos.Remove(producto);    
-                }  
             }
+        }
+        //Elimina del stock de productos el producto comprado y lo vacia del carrito
+        public static List<Producto> EliminarProductos(List<Producto> carrito, List<Producto> stock)
+        {
+            //Cada producto comprado lo quitamos de las unidades del stock
+            foreach (Producto producto in carrito)
+            {
+                foreach (Producto prodStock in stock)
+                {
+                    if (producto.Nombre == prodStock.Nombre)
+                    {
+                        prodStock.Unidades--;
+                    }
+                }
+            }
+            return stock;
         }
     }
 }

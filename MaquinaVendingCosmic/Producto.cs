@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace MaquinaVendingCosmic {
+    public enum TipoProducto { Alimentos, ProductosElectronicos, MaterialesPreciosos }
     internal abstract class Producto {
 
         public static int ultimoId = 0;
@@ -15,14 +16,17 @@ namespace MaquinaVendingCosmic {
         public int Unidades { get; set; }
         public double PrecioUnitario { get; set; }
         public string Descripcion { get; set; }
+        public TipoProducto tipo {  get; set; }
         public Producto() { }
 
-        public Producto(string nombre, int unidades, double precioUnitario, string descripcion) {
+        public Producto(string nombre, int unidades, double precioUnitario, string descripcion, TipoProducto tipo = default)
+        {
             Id = ultimoId++;
             Nombre = nombre;
             Unidades = unidades;
             PrecioUnitario = precioUnitario;
             Descripcion = descripcion;
+            this.tipo = tipo;
         }
 
         public virtual string MostrarDetalles() {

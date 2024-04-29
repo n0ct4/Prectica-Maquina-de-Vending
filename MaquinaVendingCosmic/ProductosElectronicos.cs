@@ -16,7 +16,7 @@ namespace MaquinaVendingCosmic {
 
         public ProductosElectronicos() { }
         public ProductosElectronicos(string nombre, int unidades, double precioUnitario, string descripcion, MaterialE materialE, bool pilas, bool precargado)
-            : base(nombre, unidades, precioUnitario, descripcion) {
+            : base(nombre, unidades, precioUnitario, descripcion, TipoProducto.ProductosElectronicos) {
             MaterialE = materialE;
             Pilas = pilas;
             Precargado = precargado;
