@@ -49,7 +49,7 @@ namespace MaquinaVendingCosmic
                 {
                     case 1:
                         stockProductos = PagarTarjeta(carrito, stockProductos);
-                        Console.WriteLine("Gracias Por su compra");
+                        opcion = 2;
                         break;
                     case 2:
                         stockProductos = PagarEfectivo(carrito, stockProductos);
@@ -62,7 +62,7 @@ namespace MaquinaVendingCosmic
                 Console.ReadKey();
             } while (opcion != 2);
         }
-        public List<Producto> PagarTarjeta(List<Producto> carrito, List<Producto> stockproductos)
+        public List<Producto> PagarTarjeta(List<Producto> carrito, List<Producto> stockProductos)
         {
             Console.WriteLine("Dime el numero de la tarjeta (16num): ");
             NumeroTarjeta = Console.ReadLine();

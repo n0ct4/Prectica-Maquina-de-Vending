@@ -58,7 +58,6 @@ namespace MaquinaVendingCosmic
                 if (opcion != 15)
                 {
                     AgregarAlCarrito(opcion);
-                    Console.WriteLine("El producto a sido añadido al carrito");
                     Console.WriteLine("¿Quiere seguir comprando? (1.Si 2.No)");
                     salir = int.Parse(Console.ReadLine());
                     if (salir == 2)
