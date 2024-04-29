@@ -144,8 +144,8 @@ namespace MaquinaVendingCosmic
         {
             if (producto != null)
             {
-                Console.WriteLine("Producto eliminado");
                 stockProductos.Remove(producto);
+                Console.WriteLine("Producto eliminado");               
             }
             else
             {
