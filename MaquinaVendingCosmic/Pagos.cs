@@ -91,6 +91,7 @@ namespace MaquinaVendingCosmic
         static bool ValidarTarjeta(string numeroTarjeta)
         {
             // Verificar si el número de tarjeta tiene 16 dígitos
+            // .Lenght sirve para verificar si el string recibido por parametro sirve para comprobar si la tarjeta tiene 16 digitos
             return numeroTarjeta.Length == 16;
         }
         static bool ValidarCVV(string cvv)

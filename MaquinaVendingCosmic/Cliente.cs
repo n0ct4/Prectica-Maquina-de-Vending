@@ -82,6 +82,26 @@ namespace MaquinaVendingCosmic
                 Console.ReadKey();
             }
         }
+        public void MostrarInformacionProductos (string tipo, List<Producto> productos)
+        {
+            Console.WriteLine($"  --- Listado de productos {tipo} ---  ");
+            Console.WriteLine();
+            if (stockProductos == null)
+            {
+                Console.WriteLine("No hay ningún producto");
+            }
+            else
+            {
+                foreach (Producto c in productos)
+                {
+                    if (c is Producto)
+                    {
+                        Console.WriteLine($"({c.Id}) - Producto: {c.Nombre}\t\nPrecio: {c.PrecioUnitario}\nDescripción: {c.Descripcion}\nUnidades: {c.Unidades}\nTipo de producto: {c.tipo}\n");
+                    }
+                }
+                Console.ReadKey();
+            }
+        }
 
         public void AgregarAlCarrito(int id)
         {

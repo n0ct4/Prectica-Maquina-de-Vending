@@ -10,9 +10,11 @@ namespace MaquinaVendingCosmic
 
     internal class Admin : Cliente
     {
+
         public string Nombre { get; set; }
         public string Password { get; set; }
         public Admin() { }
+       
         public Admin(string nombre, string password, List<Producto> listaProductos) : base(listaProductos)
         {
             Nombre = nombre;
@@ -164,8 +166,8 @@ namespace MaquinaVendingCosmic
         {
             if (stockProductos.Count > 0)
             {
-                File.Create("productos.txt").Close();
-                using (StreamWriter sw = new StreamWriter("productos.txt"))
+                File.Create("productos.csv").Close();
+                using (StreamWriter sw = new StreamWriter("productos.csv"))
                 {
                     foreach (Producto p in stockProductos)
                     {

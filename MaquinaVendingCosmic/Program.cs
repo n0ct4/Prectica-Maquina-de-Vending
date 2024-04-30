@@ -42,7 +42,7 @@ namespace MaquinaVendingCosmic
                             // Menu id producto y mostrar info
                             // Crea cliente para llamar a la funcion Listar y poder ver los productos
                             Cliente c2 = new Cliente(stockProductos);
-                            c2.ListarProductos("Alimentos", stockProductos);
+                            c2.MostrarInformacionProductos("productos", stockProductos);
 
                             break;
                         case 3:
@@ -76,7 +76,7 @@ namespace MaquinaVendingCosmic
                             // Menu id producto y mostrar info
                             // Crea cliente para llamar a la funcion Listar y poder ver los productos
                             Cliente c2 = new Cliente(stockProductos);
-                            c2.ListarProductos("Alimentos", stockProductos);
+                            c2.MostrarInformacionProductos("productos", stockProductos);
 
                             break;
                         case 3:
@@ -127,14 +127,14 @@ namespace MaquinaVendingCosmic
             bool productosCargados = false;
             try
             {
-                if (File.Exists("productos.txt"))
+                if (File.Exists("productos.csv"))
                 {
-                    StreamReader sr = new StreamReader("productos.txt");
+                    StreamReader sr = new StreamReader("productos.csv");
                     string linea;
                     while ((linea = sr.ReadLine()) != null)
                     {
                         productosCargados = true;
-                        string[] datos = linea.Split('|');
+                        string[] datos = linea.Split(',');
                         if (datos[0] == "Alimento")
                         {
                             ProductosAlimenticios a = new ProductosAlimenticios(datos[1], int.Parse(datos[2]), double.Parse(datos[3]), datos[4], int.Parse(datos[5]), int.Parse(datos[6]), int.Parse(datos[7]));
@@ -197,7 +197,7 @@ namespace MaquinaVendingCosmic
                 }
                 else
                 {
-                    File.Create("productos.txt").Close();
+                    File.Create("productos.csv").Close();
                 }
             }
             catch (FileNotFoundException ex)

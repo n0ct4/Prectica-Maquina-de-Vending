@@ -13,7 +13,6 @@ namespace MaquinaVendingCosmic
         public int Calorias { get; set; }
         public int Grasa { get; set; }
         public int Azucar { get; set; }
-        //public ProductosAlimenticios(double precioUnitario) : base(precioUnitario) { }
         public ProductosAlimenticios() { }
         public ProductosAlimenticios(string nombre, int unidades, double precioUnitario, string descripcion, int calorias, int grasa, int azucar)
             : base(nombre, unidades, precioUnitario, descripcion, TipoProducto.Alimentos)
@@ -39,12 +38,12 @@ namespace MaquinaVendingCosmic
 
         public override string ToString()
         {
-            return $"Alimento|{Nombre}|{Unidades}|{PrecioUnitario}|{Descripcion}|{Calorias}|{Grasa}|{Azucar}";
+            return $"Alimento,{Nombre},{Unidades},{PrecioUnitario},{Descripcion},{Calorias},{Grasa},{Azucar}";
         }
 
         public override void ToFile()
         {
-            using (StreamWriter sw = new StreamWriter("ProductosAlimenticios.txt", true))
+            using (StreamWriter sw = new StreamWriter("ProductosAlimenticios.csv", true))
             {
                 sw.WriteLine(ToString());
             }

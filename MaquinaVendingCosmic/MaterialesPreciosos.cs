@@ -65,13 +65,13 @@ namespace MaquinaVendingCosmic
         }
         public override string ToString()
         {
-            return $"MaterialPrecioso|{Nombre}|{Unidades}|{PrecioUnitario}|{Descripcion}|{Peso}|{Material}";
+            return $"MaterialPrecioso,{Nombre},{Unidades},{PrecioUnitario},{Descripcion},{Peso},{Material}";
 
         }
 
         public override void ToFile()
         {
-            using (StreamWriter sw = new StreamWriter("MaterialPreciosos.txt", true))
+            using (StreamWriter sw = new StreamWriter("MaterialPreciosos.csv", true))
             {
                 sw.WriteLine(ToString());
             }

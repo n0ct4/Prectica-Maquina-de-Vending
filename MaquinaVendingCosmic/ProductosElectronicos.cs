@@ -56,11 +56,11 @@ namespace MaquinaVendingCosmic {
         }
 
         public override string ToString() {
-            return $"ProductoElectronico|{Nombre}|{Unidades}|{PrecioUnitario}|{Descripcion}|{MaterialE}|{Pilas}|{Precargado}";
+            return $"ProductoElectronico,{Nombre},{Unidades},{PrecioUnitario},{Descripcion},{MaterialE},{Pilas},{Precargado}";
         }
 
         public override void ToFile() {
-            using (StreamWriter sw = new StreamWriter("ProductosElectronicos.txt", true)) {
+            using (StreamWriter sw = new StreamWriter("ProductosElectronicos.csv", true)) {
                 sw.WriteLine(ToString());
             }
         }
