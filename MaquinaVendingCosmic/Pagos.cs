@@ -15,7 +15,7 @@ namespace MaquinaVendingCosmic
         public string NumeroTarjeta { get; set; }
         public string FechaCaducidad { get; set; }
         public double totalPrecio { get; set; }
-
+        public static List<Producto> stockProductos;
         public Pagos() { }
 
         public Pagos(double precio, double vuelta, double dineroIngresado, string cvv, string numeroTarjeta, string fechaCaducidad)
@@ -26,8 +26,7 @@ namespace MaquinaVendingCosmic
             Cvv = cvv;
             NumeroTarjeta = numeroTarjeta;
             FechaCaducidad = fechaCaducidad;
-        }
-        public static List<Producto> stockProductos;
+        }        
         public void Menu(List<Producto> carrito,List<Producto> stockProductos)
         {
             int opcion = 0;

@@ -9,8 +9,6 @@ namespace MaquinaVendingCosmic
 {
     internal class Cliente
     {
-
-        //public static List<Producto> stockProductos = new List<Producto>();
         List<Producto> carrito = new List<Producto>();
 
         public List<Producto> stockProductos;
@@ -21,12 +19,6 @@ namespace MaquinaVendingCosmic
         {
             stockProductos = listaProductos;
         }
-
-
-        //public Cliente()//List<Producto> _stockProductos
-        //{
-        //stockProductos = _stockProductos;
-        //}
         public virtual void Menu()
         {
             int salir;
